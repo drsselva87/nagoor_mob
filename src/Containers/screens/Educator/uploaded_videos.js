@@ -7,7 +7,7 @@ import {
   ScrollView,
   TextInput,
   Pressable,
-  Dimensions,
+  Dimensions,TouchableOpacity
 } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { Card } from 'react-native-shadow-cards';
@@ -27,9 +27,11 @@ const UploadedVideos = ({ navigation }) => {
         <Card
       style={{  width:"100%",height:50,borderRadius:5,flexDirection:"row",alignItems:"center"}}
       >
+        <TouchableOpacity onPress={()=>navigation.goBack()}>
         <Card style={{width:30,marginLeft:10}}>
             <Icon name="chevron-back-outline" size={27} color="black" />
             </Card>
+            </TouchableOpacity>
              <Text
             style={{
               color: 'black',

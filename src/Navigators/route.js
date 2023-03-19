@@ -15,7 +15,10 @@ import LoginSixth from '@/Containers/screens/Authentication/login_sixth'
 import Splash from '@/Containers/screens/Commons/splash'
 import StudentHome from '@/Containers/screens/Student/home'
 import HomeSearch from '@/Containers/screens/Student/home_search'
+import HomeSearch1 from '@/Containers/screens/Educator/home_search'
+
 import HomeCategories from '@/Containers/screens/Student/home_categories'
+import HomeCategories1 from '@/Containers/screens/Educator/home_categories'
 import HomeVideoPlay from '@/Containers/screens/Student/home_video_play'
 import MyLearning from '@/Containers/screens/Student/my_learning'
 import HomeSearchResult from '../Containers/screens/Student/home_search_result'
@@ -31,11 +34,16 @@ import StudentSearchResult from '@/Containers/screens/Educator/student_search_re
 import EducatorOrStudent from '@/Containers/screens/EducatorOrStudent/educator_or_student'
 import Payment from '@/Containers/screens/Payment/payment'
 import UploadedVideos from '@/Containers/screens/Educator/uploaded_videos'
-import Notifications from '@/Containers/screens/Educator/notifications'
+import Notifications from '@/Containers/screens/Student/notifications'
+import Notifications1 from '@/Containers/screens/Educator/notifications'
 import Earnings from '@/Containers/screens/Educator/earnings'
 import EducatorProfile from '@/Containers/screens/Educator/educator_profile'
 import Educator from '@/Containers/screens/Educator/educator'
 import Student from '@/Containers/screens/Student/student'
+import Navigator from '@/Containers/screens/Commons/educator_bottom_tab'
+import Navigator1 from '../Containers/screens/Commons/student_bottom_tab'
+import EducatorProfileEdit from '@/Containers/screens/Educator/Profile'
+import StudentAttendanceList from '@/Containers/screens/Educator/studentattendancelist'
 
 const screens = {
   Splash: {
@@ -48,6 +56,14 @@ const screens = {
   },
   EducatorOrStudent: {
     screen: EducatorOrStudent,
+    backgroundColor: 'transparent',
+    navigationOptions: {
+      headerShown: false,
+      backgroundColor: 'white',
+    },
+  },
+  StudentAttendanceList: {
+    screen: StudentAttendanceList,
     backgroundColor: 'transparent',
     navigationOptions: {
       headerShown: false,
@@ -78,6 +94,13 @@ const screens = {
   },
   Onboarding_Fourth: {
     screen: OnboardingFourth,
+    navigationOptions: {
+      headerShown: false,
+      backgroundColor: 'white',
+    },
+  },
+  EducatorProfileEdit: {
+    screen: EducatorProfileEdit,
     navigationOptions: {
       headerShown: false,
       backgroundColor: 'white',
@@ -161,7 +184,7 @@ const screens = {
     },
   },
   Student: {
-    screen: Student,
+    screen: Navigator1,
     navigationOptions: {
       headerShown: false,
       backgroundColor: 'white',
@@ -209,6 +232,13 @@ const screens = {
       backgroundColor: 'white',
     },
   },
+  Notifications: {
+    screen: Notifications1,
+    navigationOptions: {
+      headerShown: false,
+      backgroundColor: 'white',
+    },
+  },
   Earnings: {
     screen: Earnings,
     navigationOptions: {
@@ -217,7 +247,7 @@ const screens = {
     },
   },
   Educator: {
-    screen: Educator,
+    screen: Navigator,
     navigationOptions: {
       headerShown: false,
       backgroundColor: 'white',
@@ -237,6 +267,13 @@ const screens = {
       backgroundColor: 'white',
     },
   },
+  HomeSearch: {
+    screen: HomeSearch1,
+    navigationOptions: {
+      headerShown: false,
+      backgroundColor: 'white',
+    },
+  },
   HomeSearchResult: {
     screen: HomeSearchResult,
     navigationOptions: {
@@ -246,6 +283,13 @@ const screens = {
   },
   HomeCategories: {
     screen: HomeCategories,
+    navigationOptions: {
+      headerShown: false,
+      backgroundColor: 'white',
+    },
+  },
+  HomeCategories: {
+    screen: HomeCategories1,
     navigationOptions: {
       headerShown: false,
       backgroundColor: 'white',

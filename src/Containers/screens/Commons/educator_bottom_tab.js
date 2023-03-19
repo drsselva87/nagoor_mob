@@ -5,7 +5,7 @@ import EducatorHome from '../Educator/home'
 import EducatorProfile from '../Educator/educator_profile'
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
 import UploadContent from '../Educator/upload_content'
-import Notifications from '../Educator/notifications'
+import Notifications1 from '../Educator/notifications'
 import StudentAttendance from '../Educator/student_attendance'
 import { createAppContainer } from 'react-navigation'
 
@@ -37,7 +37,7 @@ const NavTab = createMaterialBottomTabNavigator(
       },
     },
     Notification: {
-      screen: Notifications,
+      screen: Notifications1,
       navigationOptions: {
         tabBarIcon: tabInfo => (
           <Icon

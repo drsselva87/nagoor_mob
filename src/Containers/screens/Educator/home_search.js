@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, Image, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, Image, ScrollView ,TouchableOpacity} from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { Card } from 'react-native-shadow-cards';
 import { SearchBar } from '@rneui/themed'
@@ -12,16 +12,16 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen'
 
-const HomeSearch = ({ navigation }) => {
+const HomeSearch1 = ({ navigation }) => {
   return (
-    <ScrollView style={styles.responsiveBox}>
-    
+    <View style={styles.responsiveBox}>
+    <ScrollView>
       <Card
       style={{  width:"100%",height:50,borderRadius:5,flexDirection:"row",alignItems:"center",backgroundColor:"#27BC7F"}}
       >
-        <Card style={{width:30,marginLeft:10}}>
+        <TouchableOpacity onPress={()=>navigation.goBack()} style={{width:30,marginLeft:10,justifyContent:"center",alignItems:"center"}}>
             <Icon name="chevron-back-outline" size={27} color="black" />
-            </Card>
+            </TouchableOpacity >
              <Text
             style={{
               marginLeft: 15,
@@ -94,6 +94,7 @@ const HomeSearch = ({ navigation }) => {
       </View>
       {/* <NavTab /> */}
     </ScrollView>
+    </View>
   )
 }
 
@@ -107,9 +108,9 @@ const styles = StyleSheet.create({
   },
   responsiveBox: {
     width: wp('100%'),
-    height: hp('17%'),
+    height:"100%",
     flexDirection: 'column',
   },
 })
 
-export default HomeSearch
+export default HomeSearch1

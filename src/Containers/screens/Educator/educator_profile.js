@@ -6,7 +6,7 @@ import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 
 
-export default function StudentProfile(props, navigation) {
+export default function EducatorProfile(props, navigation) {
 
 
   const [expand, setexpand] = useState(false)
@@ -31,14 +31,11 @@ export default function StudentProfile(props, navigation) {
 
 
       <View style={{ width: "100%", height: 61, flexDirection: "row", alignItems: "center", }} >
+      <TouchableOpacity style={{marginLeft:10}} onPress={()=>props.navigation.goBack()}>
+
       <Icon name="chevron-back-outline" size={27} color="black" />
-
-
-        <Text style={{ color: "#252525", marginLeft: "10%", fontSize: 16, fontWeight: "500" }}>Student Profile</Text>
-
-
-
-
+      </TouchableOpacity>
+        <Text style={{ color: "#252525", marginLeft: 20, fontSize: 16, fontWeight: "500" }}>Student Profile</Text>
 
       </View>
       <View style={{ height: "82.6%" }}>
@@ -51,13 +48,9 @@ export default function StudentProfile(props, navigation) {
             <Text style={{ fontSize: 20, fontWeight: "500", color: "#1D1D1D", marginLeft: 32, marginTop: 15 }}>Sharon</Text>
             <View style={{ marginLeft: 32, marginTop: 5, flexDirection: "row", alignItems: "center" }}>
               <Text style={{ fontSize: 16, fontWeight: "400", color: "#616161", }}>arulj12@gmail.com</Text>
+            <TouchableOpacity onPress={()=>props.navigation.navigate("EducatorProfileEdit")}>
               <Image style={{ width: 20, height: 20, resizeMode: "contain", marginLeft: 10 }} source={require("../../../Assets/edit.png")} />
-              {/* <MaterialIcon
-                name="account-edit"
-                size={20}
-                color="black"
-                marginLeft={10}
-              /> */}
+              </TouchableOpacity>
             </View>
           </View>
 

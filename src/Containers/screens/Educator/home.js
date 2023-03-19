@@ -40,7 +40,9 @@ const EducatorHome = ({ navigation }) => {
               Jyoti Jha
             </Text>
           </View>
-          <Pressable style={{}}>
+          <Pressable  onPress={() => {
+              navigation.navigate('StudentSearchResult')
+            }}>
             <Icon name="search" size={27} color="black" />
           </Pressable>
         </View>
@@ -66,7 +68,7 @@ const EducatorHome = ({ navigation }) => {
           </Text>
           <Pressable
             onPress={() => {
-              navigation.navigate('EducatorProfile')
+              navigation.navigate('StudentAttendanceList')
             }}
           >
             <Text
@@ -123,7 +125,7 @@ const EducatorHome = ({ navigation }) => {
           <Text style={{ color: '#343434' }}>Upcoming Sessions</Text>
           <Pressable
             onPress={() => {
-              navigation.navigate('StudentSearchResult')
+              navigation.navigate('UpcomingSessions')
             }}
           >
             <Text style={{ color: '#27BC7F' }}>View all</Text>
@@ -282,7 +284,7 @@ const EducatorHome = ({ navigation }) => {
           <Text style={{ color: '#343434' }}>Uploaded Videos</Text>
           <Pressable
             onPress={() => {
-              navigation.navigate('HomeSearch')
+              navigation.navigate('UploadedVideos')
             }}
           >
             <Text style={{ color: '#27BC7F' }}>View all</Text>

@@ -1167,11 +1167,6 @@
   dependencies:
     "merge-options" "^3.0.4"
 
-"@react-native-camera-roll/camera-roll@^5.3.1":
-  "integrity" "sha512-2XKMkb/pLBC6vYkNh+bJ4UEj49V2ZSyWFHmaxsUJU9beLo1QbM3XJnySV6F1uv7aC+I2RBlDuAusCqNiTQiCOw=="
-  "resolved" "https://registry.npmjs.org/@react-native-camera-roll/camera-roll/-/camera-roll-5.3.1.tgz"
-  "version" "5.3.1"
-
 "@react-native-community/checkbox@^0.5.13":
   "integrity" "sha512-UmGf3wBpoCXLmVRKIDZyzOG+QR1fOhm0FOw4KzxHTCXpsBvZgIn5wbJ+MWk4io5RohQdY8GSX2MYFmkPJeJpeA=="
   "resolved" "https://registry.npmjs.org/@react-native-community/checkbox/-/checkbox-0.5.14.tgz"

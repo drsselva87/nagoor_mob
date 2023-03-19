@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, ScrollView, Image, FlatList } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, Image, FlatList ,TextInput, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { SearchBar } from '@rneui/themed'
 import * as Progress from 'react-native-progress'
@@ -12,7 +12,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen'
-import { TextInput } from 'react-native-gesture-handler'
+import { Touchable } from 'react-native'
 
 const StudentSearchResult = ({ navigation }) => {
   return (
@@ -20,6 +20,7 @@ const StudentSearchResult = ({ navigation }) => {
       <Card style={{ width: wp('100%'), height: 50, borderRadius: 5 }}
       >
         <View style={{ display: 'flex', flexDirection: 'row' }}>
+          <TouchableOpacity onPress={() =>navigation.goBack()}>
           <Card style={{
             borderRadius: 10,
             marginTop: hp('2%'),
@@ -28,6 +29,7 @@ const StudentSearchResult = ({ navigation }) => {
           >
             <Icon name="chevron-back-outline" size={27} color="black" />
           </Card>
+          </TouchableOpacity>
           {/* <Text
             style={{
               color: 'black',
@@ -89,6 +91,8 @@ const StudentSearchResult = ({ navigation }) => {
           data={CoursesDetails}
 
           renderItem={({ item, key }) => (
+            <TouchableOpacity onPress={()=>navigation.navigate("StudentDetails")}>
+
             <View key={key} style={{ marginTop: 3, alignSelf:"center",width:"95%",marginBottom:5}}>
               <Card style={{ flexDirection: "row",alignItems:"center",width:"100%" ,marginTop:5 }}>
                 <Image
@@ -96,7 +100,8 @@ const StudentSearchResult = ({ navigation }) => {
                   style={{
                     width: 60,
                     height: 60,
-                    borderRadius: 50
+                    borderRadius: 50,
+                    marginLeft:15,marginTop:10,marginBottom:10
                   }}>
                 </Image>
                 <View>
@@ -104,12 +109,13 @@ const StudentSearchResult = ({ navigation }) => {
                     style={{
                       fontSize: 13,
                       marginLeft: wp('2%'),
-                      fontWeight: 'bold',marginTop:5
+                      fontWeight: 'bold',
                     }}
                   >
-                    {item.course_name}
+                    Miracle Lipshutz
+                    
                   </Text>
-                  <Text
+                  {/* <Text
                     style={{
                       // width: wp('100%'),
                       marginLeft: wp('2%'),
@@ -118,8 +124,8 @@ const StudentSearchResult = ({ navigation }) => {
                     }}
                   >
                     {item.published_by}
-                  </Text>
-
+                  </Text> */}
+{/* 
                   <View
                     style={{
                       flexDirection: 'row',
@@ -137,20 +143,21 @@ const StudentSearchResult = ({ navigation }) => {
                         }}
                       />
                     ))}
-                  </View>
+                  </View> */}
                   <Text
                     style={{
                       fontSize: 11,
                       marginLeft: wp('2%'),
-                      fontWeight: 'bold',marginTop:5
+                      fontWeight: 'bold',marginTop:5,
                     }}
                   >
-                    $ 125
+                   Mobile Application Development
                   </Text>
                 </View>
               </Card>
-           
             </View>
+            </TouchableOpacity>
+
             
           )
           }

@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/Ionicons'
 
 
 
-export default function Notification(props, navigation) {
+export default function Notification1(props, navigation) {
 
 
   const { width, height } = Dimensions.get("window")

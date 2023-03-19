@@ -7,17 +7,20 @@ import {
 import { Card } from 'react-native-shadow-cards';
 import styles from "./style"
 import Icon from 'react-native-vector-icons/Ionicons'
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const Profile = ({ navigation }) => {
+const EducatorProfileEdit = ({ navigation }) => {
 
     return (
         <ScrollView style={styles.responsiveBox}>
             <Card
                 style={{ width: "100%", height: 50, borderRadius: 5, flexDirection: "row", alignItems: "center" }}
             >
+                <TouchableOpacity onPress={()=>navigation.goBack()}>
                 <Card style={styles.header}>
                     <Icon name="chevron-back-outline" size={27} color="black" />
                 </Card>
+                </TouchableOpacity>
                 <Text style={styles.headertext}>Profile</Text>
             </Card>
 
@@ -61,4 +64,4 @@ const Profile = ({ navigation }) => {
 
 
 
-export default Profile
+export default EducatorProfileEdit
