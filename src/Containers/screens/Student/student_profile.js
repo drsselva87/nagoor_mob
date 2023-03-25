@@ -52,12 +52,6 @@ export default function StudentProfile(props, navigation) {
             <View style={{ marginLeft: 32, marginTop: 5, flexDirection: "row", alignItems: "center" }}>
               <Text style={{ fontSize: 16, fontWeight: "400", color: "#616161", }}>arulj12@gmail.com</Text>
               <Image style={{ width: 20, height: 20, resizeMode: "contain", marginLeft: 10 }} source={require("../../../Assets/edit.png")} />
-              {/* <MaterialIcon
-                name="account-edit"
-                size={20}
-                color="black"
-                marginLeft={10}
-              /> */}
             </View>
           </View>
 

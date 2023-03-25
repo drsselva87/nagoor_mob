@@ -40,8 +40,8 @@ const StudentHome = ({ navigation }) => {
     {
       title: 'Computer Management Course ',
     },
-   
-  
+
+
     {
       title: 'Front End Development Course',
     },
@@ -70,7 +70,7 @@ const StudentHome = ({ navigation }) => {
         backgroundColor="#27BC7F"
         barStyle="dark-content"
       />
-    
+
       <View style={{ backgroundColor: "#27BC7F", height: 150, justifyContent: "center" }}>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <Image
@@ -112,7 +112,7 @@ const StudentHome = ({ navigation }) => {
               padding: 0,
               width: 30,
               height: 30,
-              borderRadius: 10,position:"absolute",right:20
+              borderRadius: 10, position: "absolute", right: 20
             }}
           >
             <Icon
@@ -123,7 +123,7 @@ const StudentHome = ({ navigation }) => {
           </Card>
         </View>
 
-        <SearchBar
+        {/* <SearchBar
           placeholder="Looking for a course?"
           platform="android"
           lightTheme={true}
@@ -143,7 +143,17 @@ const StudentHome = ({ navigation }) => {
             borderWidth: 0,
           }}
           inputContainerStyle={{ height: 25, width: wp('80%') }}
-        />
+        /> */}
+
+        <TouchableOpacity onPress={() => navigation.navigate("HomeSearchResult")}
+          style={{
+            alignItems: 'center', width: "80%", height: 40, backgroundColor: "#DCFFF1",
+            alignSelf: "center", flexDirection: "row", marginTop: 20, borderRadius: 5,
+          }}>
+          <Image source={require("../../../Assets/search.png")}
+            style={{ width: 15, height: 15, marginLeft: 10 }}></Image>
+          <Text style={{ color: "#0B774B", fontSize: 14, marginLeft: 15 }}>Looking for a course?</Text>
+        </TouchableOpacity>
       </View>
 
 
@@ -166,7 +176,7 @@ const StudentHome = ({ navigation }) => {
           marginLeft={20}
           style={{ color: '#00301C', fontWeight: 'bold', top: 5 }}
         >
-         Computer Management Course
+          Computer Management Course
         </Text>
         <Progress.Bar
           progress={0.4}
@@ -193,7 +203,7 @@ const StudentHome = ({ navigation }) => {
           style={{
             color: 'orange',
           }}
-          onPress={() => navigation.navigate('HomeSearchResult')}
+          onPress={() => navigation.navigate('HomeCategories')}
         >
           See all
         </Text>
@@ -203,17 +213,15 @@ const StudentHome = ({ navigation }) => {
         flexWrap="wrap"
         marginTop={7}
       >
-          {DATA.map((item, key) => (
+        {DATA.map((item, key) => (
           <TouchableOpacity>
-            <View style={{ borderWidth: 0.8, borderColor: '#0B774B', borderRadius: 8, marginLeft: 5, marginTop: 7,marginRight:5 }}>
+            <View style={{ borderWidth: 0.8, borderColor: '#0B774B', borderRadius: 8, marginLeft: 5, marginTop: 7, marginRight: 5 }}>
               <Text style={{ color: "#0B774B", fontSize: 11, margin: 5, fontWeight: "500" }}>{item.title}</Text>
             </View>
-            </TouchableOpacity>
-            ))}
-            
+          </TouchableOpacity>
+        ))}
+      </View>
 
-            </View>
-    
       {/* <ScrollView horizontal style={{ marginTop: 10 }}>
         <View>
           <Button
@@ -383,7 +391,7 @@ const StudentHome = ({ navigation }) => {
                   }} ></Image>
                 <View>
                   <Text
-                  numberOfLines={3}
+                    numberOfLines={3}
                     style={{
                       width: 90,
                       marginLeft: 10,

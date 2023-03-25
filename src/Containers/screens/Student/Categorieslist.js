@@ -1,26 +1,21 @@
-import React, { useState } from 'react'
-import { StyleSheet, Text, View, Image, ScrollView, FlatList, TouchableOpacity } from 'react-native'
+import React from 'react'
+import { StyleSheet, Text, View, Image, ScrollView,FlatList,TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { Card } from 'react-native-shadow-cards';
-import { SearchBar } from '@rneui/themed'
-import { CoursesDetails } from '../../../Constants/Courses'
 
-import NavTab from '../Commons/student_bottom_tab'
+import NavTab from '../Commons/educator_bottom_tab'
 import { Button_Name } from '../../../Constants/Button_Name'
 import { Button } from '@react-native-material/core'
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen'
-import { TextInput } from 'react-native-gesture-handler';
+import { CoursesDetails } from '../../../Constants/Courses'
 
-const HomeSearchResult = ({ navigation, route }) => {
-  const [searchtext, setsearchtext] = useState("")
-
-
+const Categorieslist = ({ navigation,route }) => {
   return (
     <View style={styles.responsiveBox}>
-      <Card
+       <Card
         style={{ width: "100%", height: 50, borderRadius: 5, flexDirection: "row", alignItems: "center", backgroundColor: "#27BC7F" }}
       >
         <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -35,72 +30,16 @@ const HomeSearchResult = ({ navigation, route }) => {
             fontSize: 16,
           }}
         >
-          Courses
+          Development
         </Text>
 
       </Card>
-      <ScrollView>
-
-        <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
-
-          <View
-            style={{
-              alignItems: 'center', width: "80%", height: 40, backgroundColor: "#DCFFF1",
-              alignSelf: "center", flexDirection: "row", marginTop: 20, borderRadius: 5,
-            }}>
-            <Image source={require("../../../Assets/search.png")}
-              style={{ width: 15, height: 15, marginLeft: 10 }}></Image>
-            <TextInput placeholder='search' value={searchtext} onChangeText={(text => setsearchtext(text))} style={{ color: "#0B774B", fontSize: 14, marginLeft: 15, width: "90%" }}></TextInput>
-          </View>
-          <Icon
-            name="filter"
-            size={20}
-            style={{ marginTop: 20, marginLeft: wp('3%'), color: '#0B774B' }}
-          />
-        </View>
-
-        <View>
-          {searchtext == '' ?
-            <View>
-              <Text
-                style={{
-                  color: '#343434',
-                  marginLeft: wp('7%'),
-                  marginTop: 15,
-                  fontSize: 14,
-                }}
-              >
-                Top Searches
-              </Text>
-              <View
-                flexDirection="row"
-                flexWrap="wrap"
-                marginLeft={wp('3%')}
-                height={hp('70%')}
-                marginTop={10}
-              >
-                {Button_Name.map((item, key) => (
-
-                  <Button
-                    title={item}
-                    variant="outlined"
-                    key={key}
-                    height={29}
-                    margin={2}
-                    color="#0B774B"
-                    alignItems="center"
-                    justifyContent="center"
-                  />
-                ))}
-              </View>
-            </View>
-            :
-            <View style={{ height: "98%" }}>
+      <View style={{ height: "98%" }}>
               <FlatList
                 data={CoursesDetails}
 
                 renderItem={({ item, key }) => (
-                  <TouchableOpacity onPress={() => navigation.navigate("StudentDetails")}>
+                  <TouchableOpacity onPress={() => navigation.navigate("HomeVideoPlay")}>
 
                     <View key={key} style={{ marginTop: 3, alignSelf: "center", width: "95%", marginBottom: 5 }}>
                       <Card style={{ flexDirection: "row", alignItems: "center", width: "100%", marginTop: 5 }}>
@@ -137,7 +76,7 @@ const HomeSearchResult = ({ navigation, route }) => {
                         </View>
                       </Card>
                     </View>
-              
+               
                   </TouchableOpacity>
 
 
@@ -145,10 +84,6 @@ const HomeSearchResult = ({ navigation, route }) => {
                 }
               />
             </View>
-          }
-        </View>
-        {/* <NavTab /> */}
-      </ScrollView>
     </View>
   )
 }
@@ -163,9 +98,9 @@ const styles = StyleSheet.create({
   },
   responsiveBox: {
     width: wp('100%'),
-    height: "100%",
+    height:"100%",
     flexDirection: 'column',
   },
 })
 
-export default HomeSearchResult
+export default Categorieslist

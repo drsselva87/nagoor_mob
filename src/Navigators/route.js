@@ -14,7 +14,7 @@ import LoginFifth from '@/Containers/screens/Authentication/login_fifth'
 import LoginSixth from '@/Containers/screens/Authentication/login_sixth'
 import Splash from '@/Containers/screens/Commons/splash'
 import StudentHome from '@/Containers/screens/Student/home'
-import HomeSearch from '@/Containers/screens/Student/home_search'
+import Categorieslist from '@/Containers/screens/Student/Categorieslist'
 import HomeSearch1 from '@/Containers/screens/Educator/home_search'
 
 import HomeCategories from '@/Containers/screens/Student/home_categories'
@@ -260,14 +260,14 @@ const screens = {
       backgroundColor: 'white',
     },
   },
-  HomeSearch: {
-    screen: HomeSearch,
+  Categorieslist: {
+    screen: Categorieslist,
     navigationOptions: {
       headerShown: false,
       backgroundColor: 'white',
     },
   },
-  HomeSearch: {
+  HomeSearch1: {
     screen: HomeSearch1,
     navigationOptions: {
       headerShown: false,
@@ -288,7 +288,7 @@ const screens = {
       backgroundColor: 'white',
     },
   },
-  HomeCategories: {
+  HomeCategories1: {
     screen: HomeCategories1,
     navigationOptions: {
       headerShown: false,

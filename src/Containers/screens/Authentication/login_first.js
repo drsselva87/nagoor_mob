@@ -318,6 +318,8 @@ const LoginFirst = ({ navigation }) => {
         Continue with Google
       </Button>
       </View>
+    </ScrollView>
+
       {/* <Button
         type="outline"
         icon={<Icon name="logo-apple" size={20} color="black" />}
@@ -335,14 +337,13 @@ const LoginFirst = ({ navigation }) => {
       >
         Continue with Facebook
       </Button> */}
-      <View style={{marginTop:"40%"}}>
+      <View style={{position:"absolute",bottom:0,width:"100%"}}>
       <Divider
         orientation="horizontal"
         color="#CDEFE9"
         width={1}
         style={{ width: '100%', marginTop: 25 }}
       />
-      </View>
       <Pressable
         onPress={() => {
           navigation.navigate('SignupEmail')
@@ -357,12 +358,13 @@ const LoginFirst = ({ navigation }) => {
           }}
         >
           Not a member yet?
-          <Text style={{ color: '#FF6E15', textAlign: 'center' }}>
+          <Text style={{ color: '#FF6E15', textAlign: 'center',marginLeft:10 }}>
             Join now
           </Text>
         </Text>
       </Pressable>
-    </ScrollView>
+      </View>
+
     </View>
   )
 }

@@ -221,7 +221,7 @@ const EducatorHome = ({ navigation }) => {
           <Text style={{ color: '#343434' }}>Categories</Text>
           <Pressable
             onPress={() => {
-              navigation.navigate('HomeCategories')
+              navigation.navigate('HomeCategories1')
             }}
           >
             <Text style={{ color: '#27BC7F' }}>View all</Text>
