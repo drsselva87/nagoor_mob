@@ -1,4 +1,5 @@
-import * as React from 'react'
+import React, { useState, useEffect, Component } from 'react';
+
 import {
   StyleSheet,
   Text,
@@ -17,28 +18,49 @@ import { Button } from '@react-native-material/core'
 import * as Progress from 'react-native-progress'
 
 const MyLearning = ({ navigation }) => {
+  const [ongoing, setongoing] = useState(true);
+  const [completedd, setcompletedd] = useState(false);
+  
+
+  const ongoingpage = () => {
+    setongoing(true)
+    setcompletedd(false)
+  }
+  const completedpage = () => {
+    setongoing(false)
+    setcompletedd(true)
+  }
   return (
     <ScrollView style={styles.responsiveBox}>
-      <View style={styles.buttonWrapper}>
-        <Button
-          width={210}
-          title="Ongoing"
-          height={50}
-          color="#27BC7F"
-          alignItems="center"
-          justifyContent="center"
-          titleStyle={{ color: 'white' }}
-        />
-        <Button
-          width={210}
-          title="Completed"
-          height={50}
-          color="#D8FFF2"
-          alignItems="center"
-          justifyContent="center"
-        />
-      </View>
+    <View style={{ flexDirection: 'row', width: '100%', alignSelf: 'center', height: 60}}>
+          {ongoing == false ? (
+            <View  onStartShouldSetResponder={ongoingpage} style={{ width: '50%', height: 60, backgroundColor:"#D8FFF2",justifyContent:"center",alignItems:"center"}}>
+
+                <Text style={{ width: "100%", color: 'black',  fontFamily: 'Poppins-Medium', fontSize: 14, fontWeight: "bold", textAlign: 'center' }}>Content</Text>
+  
+            </View>
+          ) : <View style={{ width: '50%', height: 60, backgroundColor: '#27BC7F',justifyContent:"center",alignItems:"center" }}>
+              <Text style={{ color: 'white',  fontFamily: 'Poppins-Medium', fontSize: 14, fontWeight: "bold", textAlign: 'center' }}>Content</Text>
+          </View>
+          }
+
+          {completedd == false ? (
+            <View  onStartShouldSetResponder={(completedpage)} style={{ width: '50%', height: 60,backgroundColor:"#D8FFF2" , alignItems:"center",justifyContent:"center"}}>
+                <Text style={{ width: "100%", color: 'black', fontFamily: 'Poppins-Medium', fontSize: 14, fontWeight: "bold", textAlign: 'center' }}>Downloads</Text>
+            </View>
+          ) : <View  style={{ width: '50%', height: 60, backgroundColor: '#27BC7F', alignItems:"center",justifyContent:"center"}}>
+            {/* <View style={{ marginTop: 8, height: 60,}}> */}
+              <Text style={{ width: "100%", color: 'white',  fontFamily: 'Poppins-Medium', fontSize: 14, fontWeight: "bold", textAlign: 'center' }}>Downloads</Text>
+            {/* </View> */}
+            {/* <View style={{ width: "76%", marginLeft: -28, height: 3.5, borderRadius: 1, backgroundColor: '#01a09c', top: '17%', borderTopRightRadius: 5, borderBottomRightRadius: 5, borderTopLeftRadius: 5, borderBottomLeftRadius: 5, alignSelf: 'center' }}></View> */}
+          </View>}
+
+        
+        </View>
+
+
       <View>
+        {ongoing == true ?(
         <Card
           borderRadius={10}
           containerStyle={{
@@ -60,6 +82,7 @@ const MyLearning = ({ navigation }) => {
             backgroundColor="#FFE1CF"
           />
         </Card>
+        ):null}
       </View>
     </ScrollView>
   )
