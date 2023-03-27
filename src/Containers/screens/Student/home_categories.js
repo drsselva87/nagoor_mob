@@ -22,22 +22,37 @@ const HomeCategories = ({ navigation }) => {
   var height = Dimensions.get('window').height //full height
   const DATA = [
     {
-      title: 'Development',
+      title: 'TNPSC -( GROUP 2, 2A & 4)',
+    },
+
+    {
+      title: 'Human Resource Management',
     },
     {
-      title: 'IT & Software',
+      title: 'JEE Main & Advance ',
     },
     {
-      title: 'Finance',
+      title: 'Computer Management Course ',
+    },
+
+
+    {
+      title: 'Front End Development Course',
     },
     {
-      title: 'Design',
+      title: 'Backend Development Course',
     },
     {
-      title: 'Marketing',
+      title: 'NEET (Undergraduate)',
     },
     {
-      title: 'Productivity',
+      title: 'Mobile Apps React Native (Android & iOS)',
+    },
+    {
+      title: 'Corporate English Communication',
+    },
+    {
+      title: 'Python Course',
     },
 
   ];

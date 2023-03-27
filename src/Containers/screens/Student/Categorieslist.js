@@ -40,7 +40,7 @@ const Categorieslist = ({ navigation, route }) => {
 
           renderItem={({ item, key }) => (
             <TouchableOpacity onPress={() => navigation.navigate("HomeVideoPlay")}>
-      
+
               <View key={key} style={{ marginTop: 3, alignSelf: "center", width: "95%", marginBottom: 5 }}>
                 <Card style={{ flexDirection: "row", alignItems: "center", width: "100%", marginTop: 5 }}>
                   <Image
@@ -120,6 +120,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+  },
+  text3: {
+    color: '#252525',
+    fontSize: 9,
+    width: "94%", alignSelf: "center", marginLeft: 10
   },
   responsiveBox: {
     width: wp('100%'),
