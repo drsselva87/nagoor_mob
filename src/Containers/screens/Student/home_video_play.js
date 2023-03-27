@@ -3,7 +3,8 @@ import { StyleSheet, Text, View, ScrollView, Pressable, Image, Modal, TouchableO
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import { NavigationContainer } from '@react-navigation/native'
 import Icon from 'react-native-vector-icons/Ionicons'
-import { Card } from '@rneui/themed'
+import { Card } from 'react-native-shadow-cards';
+
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -20,11 +21,12 @@ const HomeVideoPlay = ({ navigation }) => {
   const [expand, setexpand] = useState(false)
   const [content, setcontent] = useState(false)
   const [Instructor, setInstructor] = useState(false)
+  const [Feedback, setFeedback] = useState(false)
 
   const contactinf = (value) => {
     setcontent(false)
     setInstructor(false)
-
+    setFeedback(false)
     if (value) {
       value == true
       setexpand(true)
@@ -40,8 +42,9 @@ const HomeVideoPlay = ({ navigation }) => {
   }
 
   const contentinf = (value) => {
-    setexpand(false)
     setInstructor(false)
+    setexpand(false)
+    setFeedback(false)
     if (value) {
       value == true
       setcontent(true)
@@ -53,11 +56,30 @@ const HomeVideoPlay = ({ navigation }) => {
     else {
       setcontent(false)
     }
-
   }
 
+
+  const Feedbackinf = (value) => {
+    setexpand(false)
+    setcontent(false)
+    setInstructor(false)
+
+    if (value) {
+      value == true
+      setFeedback(true)
+
+    }
+    else if (value == false) {
+      setFeedback(false)
+    }
+    else {
+      setFeedback(false)
+    }
+
+  }
   const instructorinf = (value) => {
     setexpand(false)
+    setFeedback(false)
     setcontent(false)
     if (value) {
       value == true
@@ -80,19 +102,28 @@ const HomeVideoPlay = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <View style={styles.responsiveBox}>
-      <View style={styles.card}>
-        <Card
-          height={hp('5%')}
-          borderRadius={10}
-          containerStyle={styles.iconCard}
+     <Card
+        style={{ width: "100%", height: 50, borderRadius: 5, flexDirection: "row", alignItems: "center", backgroundColor: "#27BC7F" }}
+      >
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Card style={{ width: 30, marginLeft: 10 }}>
+            <Icon name="chevron-back-outline" size={27} color="black" />
+          </Card>
+        </TouchableOpacity>
+        <Text
+          style={{
+            marginLeft: 15,
+            color: 'white',
+            fontSize: 16,
+          }}
         >
-          <Icon name="chevron-back-outline" size={27} color="black" />
-        </Card>
-        <Text style={styles.title}>Advanced Android Course</Text>
-      </View>
-      <View style={{ height: "89%" }}>
+          Advanced Android Course
+        </Text>
+
+      </Card>
+      <View style={{ height: "86%" ,backgroundColor:"white"}}>
         <ScrollView>
-          <View style={{ height: "89%" }}>
+          <View style={{ height: "100%" }}>
             <View>
               <TouchableOpacity
               // onPress={() => setModalVisible(true)}
@@ -273,72 +304,134 @@ const HomeVideoPlay = ({ navigation }) => {
 
               </View>
             }
+            {Instructor == false ?
+              <TouchableOpacity onPress={() => instructorinf(true)}>
+                <View style={styles.accordian}>
+                  <Text style={{ fontSize: 14, fontWeight: "400", color: "#252525", marginLeft: 25, width: "77%" }}>Instructor</Text>
+                  <Image style={{ width: 12, height: 7.41, resizeMode: "contain", marginLeft: 15 }} source={require("../../../Assets/down.png")} />
 
-            <TouchableOpacity onPress={() => instructorinf(true)}>
-              <View style={styles.accordian}>
-                <Text style={{ fontSize: 14, fontWeight: "400", color: "#252525", marginLeft: 25, width: "77%" }}>Instructor</Text>
-                <Image style={{ width: 12, height: 7.41, resizeMode: "contain", marginLeft: 15 }} source={require("../../../Assets/down.png")} />
+                </View>
+              </TouchableOpacity>
 
+              :
+              <View>
+                <TouchableOpacity onPress={() => instructorinf(false)}>
+                  <View style={styles.accordian}>
+                    <Text style={{ fontSize: 14, fontWeight: "400", color: "#252525", marginLeft: 25, width: "77%" }}>Instructor</Text>
+                    <Image style={{ width: 12, height: 7.41, resizeMode: "contain", marginLeft: 15 }} source={require("../../../Assets/up.png")} />
+
+                  </View>
+                </TouchableOpacity>
+                <View style={{ backgroundColor: "white", }}>
+                  <View style={{ flexDirection: "row", marginTop: 15, alignItems: "center" }}>
+                    <Image style={{ width: 60, height: 60, resizeMode: "contain", marginLeft: 32, borderRadius: 50, marginTop: 15, }}
+                      source={require('../../../Assets/Images/tutor_images/arul.jpeg')} />
+
+                    <View style={{ marginLeft: 32, marginTop: 5, flexDirection: "column", marginTop: 15, }}>
+                      <Text style={{ fontSize: 14, fontWeight: "500", color: "#1D1D1D", }}>Sharon</Text>
+
+                      <Text style={{ fontSize: 12, fontWeight: "400", color: "#616161", }}>Mobile App Development</Text>
+                      {/* <Image style={{ width: 20, height: 20, resizeMode: "contain", marginLeft: 10 }} source={require("../../../Assets/edit.png")} /> */}
+                    </View>
+
+                  </View>
+                  <View style={{ width: "89%", alignSelf: "center", flexDirection: "row", alignItems: "center", marginTop: 5, marginBottom: 10 }}>
+                    <Text style={{
+                      color: '#252525',
+                      fontSize: 12,
+                      marginLeft: 10
+                    }}>4.5</Text>
+
+                    <Image source={require("../../../Assets/star.png")} style={{ width: 12, height: 12, resizeMode: "contain", marginLeft: 10 }}></Image>
+                    <Image source={require("../../../Assets/star.png")} style={{ width: 12, height: 12, resizeMode: "contain", marginLeft: 5 }}></Image>
+                    <Image source={require("../../../Assets/star.png")} style={{ width: 12, height: 12, resizeMode: "contain", marginLeft: 5 }}></Image>
+                    <Image source={require("../../../Assets/star.png")} style={{ width: 12, height: 12, resizeMode: "contain", marginLeft: 5 }}></Image>
+                    <Image source={require("../../../Assets/star.png")} style={{ width: 12, height: 12, resizeMode: "contain", marginLeft: 5 }}></Image>
+
+                    <Text style={styles.text3}>(10,255 ratings) 1255 Students</Text>
+                  </View>
+                </View>
+
+              </View>}
+            {Feedback == false ?
+              <TouchableOpacity onPress={() => Feedbackinf(true)}>
+                <View style={styles.accordian}>
+                  <Text style={{ fontSize: 14, fontWeight: "400", color: "#252525", marginLeft: 25, width: "77%" }}>Students Feedback</Text>
+                  <Image style={{ width: 12, height: 7.41, resizeMode: "contain", marginLeft: 15 }} source={require("../../../Assets/down.png")} />
+                </View>
+              </TouchableOpacity> :
+              <View style={{ backgroundColor: "white" }}>
+                <TouchableOpacity onPress={() => Feedbackinf(false)}>
+                  <View style={styles.accordian}>
+                    <Text style={{ fontSize: 14, fontWeight: "400", color: "#252525", marginLeft: 25, width: "77%" }}>Students Feedback</Text>
+                    <Image style={{ width: 12, height: 7.41, resizeMode: "contain", marginLeft: 15 }} source={require("../../../Assets/up.png")} />
+                  </View>
+                </TouchableOpacity>
+
+                <View style={{ flexDirection: "row", width: "100%", justifyContent: "space-evenly", marginTop: 10, marginBottom: 10 }}>
+                  <View style={{ backgroundColor: "white", width: "45%", height: 100, borderWidth: 1, borderColor: "#0B774B", borderRadius: 15 }}>
+                    <View style={{ flexDirection: "row", marginTop: 10, alignItems: "center", alignItems: "center", justifyContent: "center" }}>
+                      <Image style={{ width: 30, height: 30, resizeMode: "contain", borderRadius: 50, }}
+                        source={require('../../../Assets/Images/tutor_images/arul.jpeg')} />
+
+                      <View style={{ marginTop: 5, flexDirection: "column", marginLeft: 5 }}>
+                        <Text style={{ fontSize: 14, fontWeight: "500", color: "#1D1D1D", }}>Sharon</Text>
+                        <View style={{ flexDirection: "row" }}>
+                          <Image source={require("../../../Assets/star.png")} style={{ width: 12, height: 12, resizeMode: "contain", marginLeft: 2 }}></Image>
+                          <Image source={require("../../../Assets/star.png")} style={{ width: 12, height: 12, resizeMode: "contain", marginLeft: 2 }}></Image>
+                          <Image source={require("../../../Assets/star.png")} style={{ width: 12, height: 12, resizeMode: "contain", marginLeft: 2 }}></Image>
+                          <Image source={require("../../../Assets/star.png")} style={{ width: 12, height: 12, resizeMode: "contain", marginLeft: 2 }}></Image>
+                          <Image source={require("../../../Assets/star.png")} style={{ width: 12, height: 12, resizeMode: "contain", marginLeft: 2 }}></Image>
+
+                        </View>
+                      </View>
+
+                    </View>
+                    <Text style={{ fontSize: 10, width: "90%", textAlign: "center", alignSelf: "center", marginTop: 7 }}>Very clear explanation. i learned many things.</Text>
+
+                  </View>
+                  <View style={{ backgroundColor: "white", width: "45%", height: 100, borderWidth: 1, borderColor: "#0B774B", borderRadius: 15 }}>
+                    <View style={{ flexDirection: "row", marginTop: 10, alignItems: "center", alignItems: "center", justifyContent: "center" }}>
+                      <Image style={{ width: 30, height: 30, resizeMode: "contain", borderRadius: 50, }}
+                        source={require('../../../Assets/Images/tutor_images/arul.jpeg')} />
+
+                      <View style={{ marginTop: 5, flexDirection: "column", marginLeft: 5 }}>
+                        <Text style={{ fontSize: 14, fontWeight: "500", color: "#1D1D1D", }}>Sharon</Text>
+                        <View style={{ flexDirection: "row" }}>
+                          <Image source={require("../../../Assets/star.png")} style={{ width: 12, height: 12, resizeMode: "contain", marginLeft: 2 }}></Image>
+                          <Image source={require("../../../Assets/star.png")} style={{ width: 12, height: 12, resizeMode: "contain", marginLeft: 2 }}></Image>
+                          <Image source={require("../../../Assets/star.png")} style={{ width: 12, height: 12, resizeMode: "contain", marginLeft: 2 }}></Image>
+                          <Image source={require("../../../Assets/star.png")} style={{ width: 12, height: 12, resizeMode: "contain", marginLeft: 2 }}></Image>
+                          <Image source={require("../../../Assets/star.png")} style={{ width: 12, height: 12, resizeMode: "contain", marginLeft: 2 }}></Image>
+
+                        </View>
+                      </View>
+
+                    </View>
+                    <Text style={{ fontSize: 10, width: "90%", textAlign: "center", alignSelf: "center", marginTop: 7 }}>Very clear explanation. i learned many things.</Text>
+
+                  </View>
+                </View>
               </View>
-            </TouchableOpacity>
+            }
+      
 
-
-            <TouchableOpacity onPress={() => contentinf(false)}>
-              <View style={styles.accordian}>
-                <Text style={{ fontSize: 14, fontWeight: "400", color: "#252525", marginLeft: 25, width: "77%" }}>Course Content</Text>
-                <Image style={{ width: 12, height: 7.41, resizeMode: "contain", marginLeft: 15 }} source={require("../../../Assets/up.png")} />
-
-              </View>
-            </TouchableOpacity>
-
-            <View style={{ backgroundColor: "#CDEFE9", height: 178 }}>
-              <Image style={{ width: 60, height: 60, resizeMode: "contain", marginLeft: 32, marginTop: 22, borderRadius: 50 }} source={require('../../../Assets/Images/tutor_images/arul.jpeg')} />
-
-              <Text style={{ fontSize: 20, fontWeight: "500", color: "#1D1D1D", marginLeft: 32, marginTop: 15 }}>Sharon</Text>
-              <View style={{ marginLeft: 32, marginTop: 5, flexDirection: "row", alignItems: "center" }}>
-                <Text style={{ fontSize: 16, fontWeight: "400", color: "#616161", }}>arulj12@gmail.com</Text>
-                <Image style={{ width: 20, height: 20, resizeMode: "contain", marginLeft: 10 }} source={require("../../../Assets/edit.png")} />
-              </View>
-            </View>
-            <TouchableOpacity  >
-              <View style={styles.accordian}>
-                <Text style={{ fontSize: 14, fontWeight: "400", color: "#252525", marginLeft: 25, width: "77%" }}>Students Feedback</Text>
-                <Image style={{ width: 12, height: 7.41, resizeMode: "contain", marginLeft: 15 }} source={require("../../../Assets/down.png")} />
-              </View>
-            </TouchableOpacity>
-
-
-            <View
-              style={
-                (styles.buttonWrapper,
-                {
-                  flex: 1,
-                  flexDirection: 'row',
-                  flexWrap: 'wrap',
-                  alignItems: 'flex-end',
-                  justifyContent: 'flex-end',
-                  marginTop: 60,
-                })
-              }
-            >
-              <Button
-                title="$49"
-                color="#D8FFF2"
-                width={210}
-                titleStyle={{ fontSize: 10 }}
-              />
-              <Button
-                title="Buy Now"
-                color="#0B774B"
-                width={200}
-                titleStyle={{ fontSize: 10 }}
-              />
-
-            </View>
           </View>
+         
+
+        
 
         </ScrollView>
+      
       </View>
+      <View style={{width:"100%",flexDirection:"row",height:60,position:"absolute",bottom:0}}>
+            <View style={{width:"50%",backgroundColor:"#D8FFF2",height:60,justifyContent:"center",alignItems:"center"}}>
+              <Text style={{fontSize:16,color:"#252525"}}>£ 499</Text>
+            </View>
+            <View style={{width:"50%",backgroundColor:"#0B774B",height:60,justifyContent:"center",alignItems:"center"}}>
+              <Text style={{fontSize:16,color:"#252525"}}>BUY NOW</Text>
+            </View>
+            </View>
     </View>
   )
 }

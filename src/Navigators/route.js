@@ -16,7 +16,6 @@ import Splash from '@/Containers/screens/Commons/splash'
 import StudentHome from '@/Containers/screens/Student/home'
 import Categorieslist from '@/Containers/screens/Student/Categorieslist'
 import HomeSearch1 from '@/Containers/screens/Educator/home_search'
-
 import HomeCategories from '@/Containers/screens/Student/home_categories'
 import HomeCategories1 from '@/Containers/screens/Educator/home_categories'
 import HomeVideoPlay from '@/Containers/screens/Student/home_video_play'
@@ -44,7 +43,10 @@ import Navigator from '@/Containers/screens/Commons/educator_bottom_tab'
 import Navigator1 from '../Containers/screens/Commons/student_bottom_tab'
 import EducatorProfileEdit from '@/Containers/screens/Educator/Profile'
 import StudentAttendanceList from '@/Containers/screens/Educator/studentattendancelist'
-
+import Recommendedcourse from '@/Containers/screens/Student/recommendedcourse'
+import Instructor from '@/Containers/screens/Student/Instructor'
+import Instructordetail from '@/Containers/screens/Student/Instructordetail'
+import Instructorcourses from '@/Containers/screens/Student/Instructorcourses'
 const screens = {
   Splash: {
     screen: Splash,
@@ -62,6 +64,41 @@ const screens = {
       backgroundColor: 'white',
     },
   },
+
+  Instructordetail: {
+    screen: Instructordetail,
+    backgroundColor: 'transparent',
+    navigationOptions: {
+      headerShown: false,
+      backgroundColor: 'white',
+    },
+  },
+
+  Instructorcourses: {
+    screen: Instructorcourses,
+    backgroundColor: 'transparent',
+    navigationOptions: {
+      headerShown: false,
+      backgroundColor: 'white',
+    },
+  },
+  Instructor: {
+    screen: Instructor,
+    backgroundColor: 'transparent',
+    navigationOptions: {
+      headerShown: false,
+      backgroundColor: 'white',
+    },
+  },
+  Recommendedcourse: {
+    screen: Recommendedcourse,
+    backgroundColor: 'transparent',
+    navigationOptions: {
+      headerShown: false,
+      backgroundColor: 'white',
+    },
+  },
+
   StudentAttendanceList: {
     screen: StudentAttendanceList,
     backgroundColor: 'transparent',

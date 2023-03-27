@@ -106,21 +106,24 @@ const StudentHome = ({ navigation }) => {
               {userName}
             </Text>
           </Text>
+            <Card
+              style={{
+                padding: 0,
+                width: 30,
+                height: 30,
+                borderRadius: 10, position: "absolute", right: 20
+              }}
+            >
+          <TouchableOpacity onPress={() => navigation.navigate("Notification")}>
 
-          <Card
-            style={{
-              padding: 0,
-              width: 30,
-              height: 30,
-              borderRadius: 10, position: "absolute", right: 20
-            }}
-          >
-            <Icon
-              name="notifications-outline"
-              style={{ color: 'black' }}
-              size={27}
-            />
-          </Card>
+              <Icon
+                name="notifications-outline"
+                style={{ color: 'black' }}
+                size={27}
+              />
+          </TouchableOpacity>
+
+            </Card>
         </View>
 
         {/* <SearchBar
@@ -358,7 +361,7 @@ const StudentHome = ({ navigation }) => {
       >
         <Text style={{ color: 'black', fontWeight: "500" }}>Recommended Course For You</Text>
         <Pressable
-          onPress={() => navigation.navigate('HomeSearchResult')}
+          onPress={() => navigation.navigate('Recommendedcourse')}
           style={{ color: 'orange', marginTop: 10, }}>
           <Text style={{ color: 'orange', }}>
             See all
@@ -467,7 +470,7 @@ const StudentHome = ({ navigation }) => {
             marginTop: 20,
             paddingLeft: wp('28%'),
           }}
-          onPress={() => navigation.navigate('HomeSearch')}
+          onPress={() => navigation.navigate('Instructor')}
         >
           <Text
             style={{

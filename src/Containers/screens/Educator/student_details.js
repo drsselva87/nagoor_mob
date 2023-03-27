@@ -25,25 +25,24 @@ const StudentDetails = ({ navigation }) => {
   return (
     <ScrollView style={styles.responsiveBox}>
    
-       <Card
-      style={{  width:"100%",height:50,borderRadius:5,flexDirection:"row",alignItems:"center"}}
+   <Card
+        style={{ width: "100%", height: 50, borderRadius: 5, flexDirection: "row", alignItems: "center", backgroundColor: "#27BC7F" }}
       >
-        <TouchableOpacity onPress={()=>navigation.goBack()}>
-        <Card style={{width:30,marginLeft:10}}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Card style={{ width: 30, marginLeft: 10 }}>
             <Icon name="chevron-back-outline" size={27} color="black" />
-            </Card>
-            </TouchableOpacity>
-             <Text
-            style={{
-              color: 'black',
-              marginLeft: 15,
-           
-              fontSize: 16,
-            }}
-          >
-                  Student Details
-          </Text>
-       
+          </Card>
+        </TouchableOpacity>
+        <Text
+          style={{
+            marginLeft: 15,
+            color: 'white',
+            fontSize: 16,
+          }}
+        >
+          Student Details
+        </Text>
+
       </Card>
       <View
         style={{
@@ -219,7 +218,7 @@ const StudentDetails = ({ navigation }) => {
           </View>
         </Card>
       </View>
-      <NavTab />
+      {/* <NavTab /> */}
     </ScrollView>
   )
 }
