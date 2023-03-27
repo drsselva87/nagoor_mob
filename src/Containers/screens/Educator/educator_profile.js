@@ -35,7 +35,7 @@ export default function EducatorProfile(props, navigation) {
 
       <Icon name="chevron-back-outline" size={27} color="black" />
       </TouchableOpacity>
-        <Text style={{ color: "#252525", marginLeft: 20, fontSize: 16, fontWeight: "500" }}>Student Profile</Text>
+        <Text style={{ color: "#252525", marginLeft: 20, fontSize: 16, fontWeight: "500" }}>Educator Profile</Text>
 
       </View>
       <View style={{ height: "82.6%" }}>

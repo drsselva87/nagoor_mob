@@ -64,7 +64,7 @@ const EducatorOrStudent = ({ navigation }) => {
         </TouchableOpacity>
 
                   
-        <TouchableOpacity  onPress={() => navigation.navigate('Educator')}
+        <TouchableOpacity  onPress={() => navigation.navigate('FirstOnboarding')}
         style={{width:210,height:50,backgroundColor:"#0B774B",borderRadius:10,justifyContent:"center",alignItems:"center",flexDirection:"row",marginTop:15}}>
       <FontIcon name="chalkboard-teacher" style={{ color: 'white' }} />
         <Text style={{color:"white",marginLeft:10,fontSize:16,fontWeight:"400"}}>Educator</Text>

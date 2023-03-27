@@ -47,6 +47,8 @@ import Recommendedcourse from '@/Containers/screens/Student/recommendedcourse'
 import Instructor from '@/Containers/screens/Student/Instructor'
 import Instructordetail from '@/Containers/screens/Student/Instructordetail'
 import Instructorcourses from '@/Containers/screens/Student/Instructorcourses'
+import Educatorlogin from '@/Containers/screens/Educator/Educatorlogin'
+import FirstOnboarding from '@/Containers/screens/Educator/FirstOnboarding'
 const screens = {
   Splash: {
     screen: Splash,
@@ -64,7 +66,24 @@ const screens = {
       backgroundColor: 'white',
     },
   },
+  
+  Educatorlogin: {
+    screen: Educatorlogin,
+    backgroundColor: 'transparent',
+    navigationOptions: {
+      headerShown: false,
+      backgroundColor: 'white',
+    },
+  },
 
+FirstOnboarding: {
+  screen: FirstOnboarding,
+  backgroundColor: 'transparent',
+  navigationOptions: {
+    headerShown: false,
+    backgroundColor: 'white',
+  },
+},
   Instructordetail: {
     screen: Instructordetail,
     backgroundColor: 'transparent',
