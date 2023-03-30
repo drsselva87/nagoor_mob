@@ -115,7 +115,7 @@ const SignupEmail = ({ navigation }) => {
         .then(function (response) {
           console.log('******* Done********')
           console.log(response.data)
-          navigation.navigate('EducatorLogin')
+          navigation.navigate('Login')
         })
         .catch(function (error) {
           console.log(error.response.data)

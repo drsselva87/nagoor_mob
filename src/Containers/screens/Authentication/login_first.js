@@ -111,17 +111,25 @@ const LoginFirst = ({ navigation }) => {
             response.data.email,
             response.data.firstName,
             '',
-            response.data.userId,
+            response.data.password,
+            response.data.role,
           )
-          console.log('******* Done********')
           dispatch(
             addUser({
               email: response.data.email,
               name: response.data.firstName,
               photo: null,
+              password: response.data.password,
+              role: response.data.role,
             }),
           )
-          navigation.navigate('Student')
+          if (response.data.role === 'Student') {
+            console.log('respinse going to studenttttttttt')
+            navigation.navigate('Student')
+          } else {
+            console.log('respinse going to educatorrrrrrrrr')
+            navigation.navigate('Educator')
+          }
         })
         .catch(function (error) {
           console.log(error)

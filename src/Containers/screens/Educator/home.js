@@ -20,32 +20,34 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen'
-import NavTab from '../Commons/educator_bottom_tab'
-import { createAppContainer } from 'react-navigation'
+import { useSelector } from 'react-redux'
 
 const EducatorHome = ({ navigation }) => {
-  // {
-  //   console.log(navigation.navigate('Dashboard'))
-  // }
+  const userName = useSelector(store => store.user.name)
+  const userPhoto = useSelector(store => store.user.photo)
   return (
     <View style={styles.responsiveBox}>
       <ScrollView>
         <View style={{ flexDirection: 'row', padding: 10, marginTop: 10 }}>
           <Pressable onPress={() => navigation.navigate('Dashboard')}>
-            <Image
-              source={require('../../../Assets/Images/avatar.jpeg')}
-              style={{
-                width: 50,
-                height: 50,
-                borderRadius: 100,
-                marginLeft: wp('3%'),
-              }}
-            />
+          <Image
+            source={
+              userPhoto
+                ? { uri: userPhoto }
+                : require('../../../Assets/Images/avatar.jpeg')
+            }
+            style={{
+              width: 55,
+              height: 55,
+              borderRadius: 100, marginLeft: 20
+
+            }}
+          />
           </Pressable>
           <View style={{ marginLeft: 10, width: '70%' }}>
             <Text style={{ color: 'black', fontSize: 14 }}>Hello!</Text>
             <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 16 }}>
-              Jyoti Jha
+              {userName}
             </Text>
           </View>
           <Pressable

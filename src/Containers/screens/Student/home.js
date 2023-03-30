@@ -4,12 +4,15 @@ import {
   Text,
   View,
   ScrollView,
-  Pressable, FlatList,
-  Image, StatusBar, Touchable
+  Pressable,
+  FlatList,
+  Image,
+  StatusBar,
+  Touchable,
 } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { SearchBar } from '@rneui/themed'
-import { Card } from 'react-native-shadow-cards';
+import { Card } from 'react-native-shadow-cards'
 
 import * as Progress from 'react-native-progress'
 import { Button } from '@rneui/base'
@@ -20,7 +23,7 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen'
 import { useSelector } from 'react-redux'
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
 const StudentHome = ({ navigation }) => {
   const userEmail = useSelector(store => store.user.email)
@@ -41,7 +44,6 @@ const StudentHome = ({ navigation }) => {
       title: 'Computer Management Course ',
     },
 
-
     {
       title: 'Front End Development Course',
     },
@@ -60,19 +62,21 @@ const StudentHome = ({ navigation }) => {
     {
       title: 'Python Course',
     },
-
-  ];
+  ]
 
 
   return (
     <ScrollView style={styles.responsiveBox}>
-      <StatusBar
-        backgroundColor="#27BC7F"
-        barStyle="dark-content"
-      />
+      <StatusBar backgroundColor="#27BC7F" barStyle="dark-content" />
 
-      <View style={{ backgroundColor: "#27BC7F", height: 150, justifyContent: "center" }}>
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
+      <View
+        style={{
+          backgroundColor: '#27BC7F',
+          height: 150,
+          justifyContent: 'center',
+        }}
+      >
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <Image
             source={
               userPhoto
@@ -82,15 +86,17 @@ const StudentHome = ({ navigation }) => {
             style={{
               width: 55,
               height: 55,
-              borderRadius: 100, marginLeft: 20
-
+              borderRadius: 100,
+              marginLeft: 20,
             }}
           />
 
           <Text
             style={{
               color: 'white',
-              fontSize: 14, lineHeight: 22, marginLeft: 10
+              fontSize: 14,
+              lineHeight: 22,
+              marginLeft: 10,
             }}
           >
             Hello!
@@ -106,24 +112,26 @@ const StudentHome = ({ navigation }) => {
               {userName}
             </Text>
           </Text>
-            <Card
-              style={{
-                padding: 0,
-                width: 30,
-                height: 30,
-                borderRadius: 10, position: "absolute", right: 20
-              }}
+          <Card
+            style={{
+              padding: 0,
+              width: 30,
+              height: 30,
+              borderRadius: 10,
+              position: 'absolute',
+              right: 20,
+            }}
+          >
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Notification')}
             >
-          <TouchableOpacity onPress={() => navigation.navigate("Notification")}>
-
               <Icon
                 name="notifications-outline"
                 style={{ color: 'black' }}
                 size={27}
               />
-          </TouchableOpacity>
-
-            </Card>
+            </TouchableOpacity>
+          </Card>
         </View>
 
         {/* <SearchBar
@@ -148,31 +156,47 @@ const StudentHome = ({ navigation }) => {
           inputContainerStyle={{ height: 25, width: wp('80%') }}
         /> */}
 
-        <TouchableOpacity onPress={() => navigation.navigate("HomeSearchResult")}
+        <TouchableOpacity
+          onPress={() => navigation.navigate('HomeSearchResult')}
           style={{
-            alignItems: 'center', width: "80%", height: 40, backgroundColor: "#DCFFF1",
-            alignSelf: "center", flexDirection: "row", marginTop: 20, borderRadius: 5,
-          }}>
-          <Image source={require("../../../Assets/search.png")}
-            style={{ width: 15, height: 15, marginLeft: 10 }}></Image>
-          <Text style={{ color: "#0B774B", fontSize: 14, marginLeft: 15 }}>Looking for a course?</Text>
+            alignItems: 'center',
+            width: '80%',
+            height: 40,
+            backgroundColor: '#DCFFF1',
+            alignSelf: 'center', flexDirection: 'row', marginTop: 20, borderRadius: 5,
+          }}
+        >
+          <Image
+            source={require('../../../Assets/search.png')}
+            style={{ width: 15, height: 15, marginLeft: 10 }}
+           />
+          <Text style={{ color: '#0B774B', fontSize: 14, marginLeft: 15 }}>Looking for a course?</Text>
         </TouchableOpacity>
       </View>
 
-
-      <Text style={{ color: '#343434', marginTop: 20, marginLeft: wp('5%'), fontWeight: "500" }}>
+      <Text
+        style={{
+          color: '#343434',
+          marginTop: 20,
+          marginLeft: wp('5%'),
+          fontWeight: '500',
+        }}
+      >
         Continue Learning
       </Text>
-      <Card style={{
-        width: wp('85%'),
-        height: 100,
-        borderRadius: 10,
-        paddingLeft: wp('5%'),
-        backgroundColor: '#96F2D4',
-        justifyContent: "center", alignSelf: "center", marginTop: 15
-      }}
+      <Card
+        style={{
+          width: wp('85%'),
+          height: 100,
+          borderRadius: 10,
+          paddingLeft: wp('5%'),
+          backgroundColor: '#96F2D4',
+          justifyContent: 'center',
+          alignSelf: 'center',
+          marginTop: 15,
+        }}
       >
-        <Text marginLeft={20} style={{ color: '#00301C', fontWeight: "500" }}>
+        <Text marginLeft={20} style={{ color: '#00301C', fontWeight: '500' }}>
           Grit Studies
         </Text>
         <Text
@@ -201,7 +225,7 @@ const StudentHome = ({ navigation }) => {
           marginTop: 10,
         }}
       >
-        <Text style={{ color: '#343434', marginTop: 20, fontWeight: "500" }}>Top Categories</Text>
+        <Text style={{ color: '#343434', marginTop: 20, fontWeight: '500' }}>Top Categories</Text>
         <Text
           style={{
             color: 'orange',
@@ -211,15 +235,29 @@ const StudentHome = ({ navigation }) => {
           See all
         </Text>
       </View>
-      <View
-        flexDirection="row"
-        flexWrap="wrap"
-        marginTop={7}
-      >
+      <View flexDirection="row" flexWrap="wrap" marginTop={7}>
         {DATA.map((item, key) => (
           <TouchableOpacity>
-            <View style={{ borderWidth: 0.8, borderColor: '#0B774B', borderRadius: 8, marginLeft: 5, marginTop: 7, marginRight: 5 }}>
-              <Text style={{ color: "#0B774B", fontSize: 11, margin: 5, fontWeight: "500" }}>{item.title}</Text>
+            <View
+              style={{
+                borderWidth: 0.8,
+                borderColor: '#0B774B',
+                borderRadius: 8,
+                marginLeft: 5,
+                marginTop: 7,
+                marginRight: 5,
+              }}
+            >
+              <Text
+                style={{
+                  color: '#0B774B',
+                  fontSize: 11,
+                  margin: 5,
+                  fontWeight: '500',
+                }}
+              >
+                {item.title}
+              </Text>
             </View>
           </TouchableOpacity>
         ))}
@@ -359,11 +397,11 @@ const StudentHome = ({ navigation }) => {
           marginTop: 5,
         }}
       >
-        <Text style={{ color: 'black', fontWeight: "500" }}>Recommended Course For You</Text>
+        <Text style={{ color: 'black', fontWeight: '500' }}>Recommended Course For You</Text>
         <Pressable
           onPress={() => navigation.navigate('Recommendedcourse')}
-          style={{ color: 'orange', marginTop: 10, }}>
-          <Text style={{ color: 'orange', }}>
+          style={{ color: 'orange', marginTop: 10 }}>
+          <Text style={{ color: 'orange' }}>
             See all
           </Text>
         </Pressable>
@@ -374,24 +412,27 @@ const StudentHome = ({ navigation }) => {
           data={CoursesDetails}
           horizontal={true}
           renderItem={({ item, key }) => (
-
             <View key={key}>
-              <Card style={{
-                width: 200,
-                borderRadius: 10, backgroundColor: '#96F2D4',
-                padding: 0,
-                marginLeft: 5, flexDirection: "row"
-              }}
+              <Card
+                style={{
+                  width: 200,
+                  borderRadius: 10,
+                  backgroundColor: '#96F2D4',
+                  padding: 0,
+                  marginLeft: 5,
+                  flexDirection: 'row',
+                }}
               >
-
-                <Image source={item.img}
+                <Image
+                  source={item.img}
                   style={{
                     width: 100,
                     height: 100,
                     borderRadius: 10,
                     marginLeft: 0,
                     padding: 0,
-                  }} ></Image>
+                  }}
+                 />
                 <View>
                   <Text
                     numberOfLines={3}
@@ -401,19 +442,19 @@ const StudentHome = ({ navigation }) => {
                       fontSize: 13,
                       top: 5,
                       fontWeight: 'bold',
-                      color: 'black', lineHeight: 17
+                      color: 'black',
+                      lineHeight: 17,
                     }}
                   >
                     {item.course_name}
                     {'\n'}
                     <Text
                       style={{
-
                         marginLeft: 10,
                         fontSize: 10,
 
                         color: 'black',
-                        fontWeight: "400"
+                        fontWeight: '400',
                       }}
                     >
                       {item.published_by}
@@ -431,16 +472,18 @@ const StudentHome = ({ navigation }) => {
                       <Icon
                         key={key}
                         name="star"
-                        style={{ marginLeft: 10, marginTop: 15, color: '#FFC107' }}
+                        style={{
+                          marginLeft: 10,
+                          marginTop: 15,
+                          color: '#FFC107',
+                        }}
                       />
                     ))}
                   </View>
                 </View>
               </Card>
             </View>
-
-          )
-          }
+          )}
         />
       </View>
 
@@ -459,7 +502,8 @@ const StudentHome = ({ navigation }) => {
         <Text
           style={{
             color: '#343434',
-            marginTop: 20, fontWeight: "500"
+            marginTop: 20,
+            fontWeight: '500',
           }}
         >
           Our Best Instructors
@@ -488,18 +532,22 @@ const StudentHome = ({ navigation }) => {
       >
         {EducatorDetails.map((items, key) => (
           <View
-            style={{ marginTop: 10, alignItems: 'center', marginLeft: 8, marginRight: 8 }}
+            style={{
+              marginTop: 10,
+              alignItems: 'center',
+              marginLeft: 8,
+              marginRight: 8,
+            }}
             key={key}
           >
-
-            <Image style={{
-              width: 80,
-              height: 80,
-              borderRadius: 100,
-            }} source={items.img}>
-
-            </Image>
-
+            <Image
+              style={{
+                width: 80,
+                height: 80,
+                borderRadius: 100,
+              }}
+              source={items.img}
+            ></Image>
 
             <View style={{ flexDirection: 'column', alignItems: 'center' }}>
               <Text
@@ -519,7 +567,8 @@ const StudentHome = ({ navigation }) => {
 
                   textAlign: 'center',
                   color: 'grey',
-                  width: 80, marginTop: 8
+                  width: 80,
+                  marginTop: 8,
                 }}
               >
                 {items.info}
@@ -529,7 +578,7 @@ const StudentHome = ({ navigation }) => {
                   flexDirection: 'row',
 
                   marginTop: 5,
-                  alignSelf: "center"
+                  alignSelf: 'center',
 
                 }}
               >

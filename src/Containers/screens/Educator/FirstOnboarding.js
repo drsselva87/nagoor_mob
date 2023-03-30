@@ -131,7 +131,7 @@ const FirstOnboarding = ({ navigation }) => {
     >
       <Pressable
         onPress={() => {
-          navigation.navigate('Educatorlogin')
+          navigation.navigate('LoginFirst')
         }}
       >
         <Text
@@ -207,7 +207,7 @@ const FirstOnboarding = ({ navigation }) => {
           </View>
         </Swiper>
       </View>
-      <TouchableOpacity onPress={() => navigation.navigate('Educatorlogin')}>
+      <TouchableOpacity onPress={() => navigation.navigate('LoginFirst')}>
         <View style={styles.button}>
           <Text style={{ fontSize: 19, color: 'white', fontWeight: 'bold' }}>Get Started</Text>
           <Icon style={styles.icons} name="right" size={20} color="white" />

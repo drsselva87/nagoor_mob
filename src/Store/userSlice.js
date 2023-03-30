@@ -6,6 +6,7 @@ const userSlice = createSlice({
     email: '',
     name: '',
     photo: '',
+    role: '',
   },
   reducers: {
     addUser: (state, action) => {
@@ -13,6 +14,7 @@ const userSlice = createSlice({
       state.name = action.payload.name
       state.photo = action.payload.photo
       state.password = state.password
+      state.role = state.role
     },
     clearUser: state => {
       state.email = []
