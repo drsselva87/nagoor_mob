@@ -10,7 +10,7 @@ import {
   Pressable,
   ActivityIndicator,
 } from 'react-native'
-import Icon from 'react-native-vector-icons/Ionicons'
+import axios from 'axios'
 import { Button, Divider } from '@rneui/base'
 import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore'
@@ -21,7 +21,7 @@ import {
 import { addUser } from '@/Store/userSlice'
 import { useDispatch } from 'react-redux'
 
-// import {AsyncStorage} from 'react-native';
+const baseUrl = 'http://44.202.89.70:8989/api/loginUser'
 
 const LoginFirst = ({ navigation }) => {
   const [authenticated, setAutheticated] = useState(false)
@@ -67,41 +67,70 @@ const LoginFirst = ({ navigation }) => {
   //   };
 
   const EmailSignIn = async (email, password) => {
+    // try {
+    //   if (email !== '' && password !== '') {
+    //     toggleLoading()
+    //     const res = await auth().signInWithEmailAndPassword(email, password)
+    //     console.log('Signed-In')
+    //     console.log(res)
+    //     dispatch(
+    //       addUser({
+    //         email: res.user.email,
+    //         name: res.user.displayName,
+    //         photo: res.user.photoURL,
+    //       }),
+    //     )
+    //     navigation.navigate('Student')
+    //   } else {
+    //     alert('Please Enter Email and Password to Continue')
+    //   }
+    // } catch (error) {
+    //   console.log(error.code)
+    //   toggleLoading()
+    //   if (error.code === 'auth/invalid-email') {
+    //     alert('Please Enter Valid Email Id')
+    //   }
+    //   if (error.code === 'auth/user-not-found') {
+    //     alert(
+    //       'Please Create your account. No valid account found by the entered email',
+    //     )
+    //   }
+    //   if (error.code === 'auth/wrong-password') {
+    //     alert(
+    //       'Please enter correct password. Update your password if you have forgotten the password.',
+    //     )
+    //   }
+    // }
     try {
-      if (email !== '' && password !== '') {
-        toggleLoading()
-        const res = await auth().signInWithEmailAndPassword(email, password)
-        console.log('Signed-In')
-        console.log(res)
-        dispatch(
-          addUser({
-            email: res.user.email,
-            name: res.user.displayName,
-            photo: res.user.photoURL,
-          }),
-        )
-        navigation.navigate('Student')
-      } else {
-        alert('Please Enter Email and Password to Continue')
-      }
+      axios
+        .get(baseUrl + '/' + email + '/' + password)
+        .then(function (response) {
+          console.log('******* Done********')
+          console.log(response.data)
+          saveData(
+            response.data.email,
+            response.data.firstName,
+            '',
+            response.data.userId,
+          )
+          console.log('******* Done********')
+          dispatch(
+            addUser({
+              email: response.data.email,
+              name: response.data.firstName,
+              photo: null,
+            }),
+          )
+          navigation.navigate('Student')
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
     } catch (error) {
-      console.log(error.code)
-      toggleLoading()
-      if (error.code === 'auth/invalid-email') {
-        alert('Please Enter Valid Email Id')
-      }
-      if (error.code === 'auth/user-not-found') {
-        alert(
-          'Please Create your account. No valid account found by the entered email',
-        )
-      }
-      if (error.code === 'auth/wrong-password') {
-        alert(
-          'Please enter correct password. Update your password if you have forgotten the password.',
-        )
-      }
+      console.log(error)
     }
   }
+
   const GoogleSignIn = async () => {
     try {
       console.log('STARTING')
@@ -155,9 +184,10 @@ const LoginFirst = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-    <ScrollView >
-      <View style={{flexDirection:"row",alignItems:"center",  marginTop: 70,}}>
-
+      <ScrollView>
+        <View
+          style={{ flexDirection: 'row', alignItems: 'center', marginTop: 70 }}
+        >
           <Image
             source={require('../../../Assets/Images/logo.png')}
             style={{
@@ -167,158 +197,175 @@ const LoginFirst = ({ navigation }) => {
               marginLeft: 30,
             }}
           />
-        
-        <View style={{  marginLeft: 5 }}>
+
+          <View style={{ marginLeft: 5 }}>
+            <Text
+              style={{
+                color: '#267900',
+                fontSize: 30,
+                fontFamily: 'LeagueSpartan-ExtraBold',
+              }}
+            >
+              GR
+              <Text
+                style={{
+                  color: '#FF6E15',
+                  fontSize: 30,
+                  fontFamily: 'LeagueSpartan-ExtraBold',
+                }}
+              >
+                IT
+              </Text>
+              <Text
+                style={{
+                  color: '#00C5E4',
+                  fontSize: 30,
+                  fontFamily: 'LeagueSpartan-ExtraBold',
+                }}
+              >
+                {' '}
+                Studies
+              </Text>
+            </Text>
+          </View>
+        </View>
+        <Text
+          style={{
+            color: '#0B774B',
+            fontSize: 20,
+            fontFamily: 'Roboto',
+            marginLeft: 30,
+            fontWeight: '700',
+            marginTop: 20,
+            width: '90%',
+            lineHeight: 25,
+          }}
+        >
+          Quality learning simplified for anywhere and anytime
+        </Text>
+        <Text
+          style={{
+            color: '#252525',
+            fontSize: 16,
+            fontFamily: 'Roboto',
+            marginLeft: 30,
+            fontWeight: '400',
+            marginTop: 10,
+          }}
+        >
+          Sign in to GRIT Studies account
+        </Text>
+        <SafeAreaView marginTop={10}>
+          <TextInput
+            style={styles.input}
+            textContentType="emailAddress"
+            keyboardType="email-address"
+            placeholder="Email / Username"
+            value={email}
+            onChangeText={txt => {
+              setEmail(txt)
+            }}
+            placeholderTextColor={'#0B774B'}
+            backgroundColor="#F9FFFC"
+          />
+          <TextInput
+            style={styles.input}
+            value={password}
+            secureTextEntry={true}
+            onChangeText={txt => {
+              setPassword(txt)
+            }}
+            placeholder="Password"
+            keyboardType="password"
+            placeholderTextColor={'#0B774B'}
+            backgroundColor="#F9FFFC"
+          />
+        </SafeAreaView>
+        <Text
+          style={{
+            color: '#FF6E15',
+            fontSize: 14,
+            fontFamily: 'Roboto',
+            marginLeft: '61%',
+            fontWeight: '400',
+            marginTop: 10,
+          }}
+          onPress={() => navigation.navigate('LoginFourth')}
+        >
+          Forgot password?
+        </Text>
+        <Button
+          type="solid"
+          titleStyle={{ color: 'white', fontSize: 15 }}
+          buttonStyle={{
+            height: 50,
+            width: '82%',
+            alignContent: 'center',
+            margin: 0,
+            flex: 1,
+            marginTop: 10,
+            paddingLeft: 0,
+
+            backgroundColor: '#0B774B',
+            borderRadius: 12,
+            alignSelf: 'center',
+          }}
+          onPress={() => {
+            EmailSignIn(email, password)
+          }}
+        >
+          Continue
+          {isLoading && <ActivityIndicator size="large" color="white" />}
+        </Button>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginTop: 15,
+          }}
+        >
+          <View
+            style={{ width: '32%', height: 1, backgroundColor: '#CDEFE9' }}
+          />
           <Text
             style={{
-              color: '#267900',
-              fontSize: 30,
-              fontFamily: 'LeagueSpartan-ExtraBold'
+              color: '#0B774B',
+              marginLeft: 15,
             }}
           >
-            GR
-            <Text
-              style={{
-                color: '#FF6E15',
-                fontSize: 30,
-                fontFamily: 'LeagueSpartan-ExtraBold'
-              }}
-            >
-              IT
-            </Text>
-            <Text
-              style={{
-                color: '#00C5E4',
-                fontSize: 30,
-                fontFamily: 'LeagueSpartan-ExtraBold'
-            
-              }}
-            >
-              {' '}
-              Studies
-            </Text>
+            OR
           </Text>
-        </View>
-      </View>
-      <Text
-        style={{
-          color: '#0B774B',
-          fontSize: 20,
-          fontFamily: 'Roboto',
-          marginLeft: 30,
-          fontWeight: '700',
-          marginTop: 20,
-          width:"90%",lineHeight:25
-        }}
-      >
-        Quality learning simplified for anywhere and anytime
-      </Text>
-      <Text
-        style={{
-          color: '#252525',
-          fontSize: 16,
-          fontFamily: 'Roboto',
-          marginLeft: 30,
-          fontWeight: '400',
-          marginTop: 10,
-        }}
-      >
-        Sign in to GRIT Studies account
-      </Text>
-      <SafeAreaView marginTop={10}>
-        <TextInput
-          style={styles.input}
-          textContentType="emailAddress"
-          keyboardType="email-address"
-          placeholder="Email / Username"
-          value={email}
-          onChangeText={txt => {
-            setEmail(txt)
-          }}
-          placeholderTextColor={'#0B774B'}
-          backgroundColor="#F9FFFC"
-        />
-        <TextInput
-          style={styles.input}
-          value={password}
-          secureTextEntry={true}
-          onChangeText={txt => {
-            setPassword(txt)
-          }}
-          placeholder="Password"
-          keyboardType="password"
-          placeholderTextColor={'#0B774B'}
-          backgroundColor="#F9FFFC"
-        />
-      </SafeAreaView>
-      <Text
-        style={{
-          color: '#FF6E15',
-          fontSize: 14,
-          fontFamily: 'Roboto',
-          marginLeft: "61%",
-          fontWeight: '400',
-          marginTop: 10,
-        }}
-        onPress={() => navigation.navigate('LoginFourth')}
-      >
-        Forgot password?
-      </Text>
-      <Button
-        type="solid"
-        titleStyle={{ color: 'white', fontSize: 15 }}
-        buttonStyle={{
-          height: 50,
-          width: "82%",
-          alignContent: 'center',
-          margin: 0,
-          flex: 1,
-          marginTop: 10,
-          paddingLeft: 0,
-         
-          backgroundColor: '#0B774B',
-          borderRadius: 12,alignSelf:"center"
-        }}
-        onPress={() => {
-          EmailSignIn(email, password)
-        }}
-      >
-        Continue
-        {isLoading && <ActivityIndicator size="large" color="white" />}
-      </Button>
-      <View style={{flexDirection:"row",justifyContent:"center",alignItems:"center",marginTop: 15}}>
-        <View style={{width:"32%",height:1,backgroundColor:"#CDEFE9",}}></View>
-        <Text
-        style={{
-          color: '#0B774B',marginLeft:15
-        }}
-      >
-        OR
-      </Text> 
-        <View style={{width:"32%",height:1,backgroundColor:"#CDEFE9",marginLeft:15}}></View>
-      </View>
-     <View style={{}}>
-
-      <Button
-        type="outline"
-        icon={
-          <Image
-            source={require('../../../Assets/Images/google.jpeg')}
-            style={{ width: 20, height: 20 }}
+          <View
+            style={{
+              width: '32%',
+              height: 1,
+              backgroundColor: '#CDEFE9',
+              marginLeft: 15,
+            }}
           />
-        }
-        titleStyle={{ color: '#0B774B', fontSize: 15, marginLeft: 5 }}
-        buttonStyle={styles.buttons}
-        onPress={() =>
-          GoogleSignIn().then(() => {
-            console.log('Signed In')
-          })
-        }
-      >
-        Continue with Google
-      </Button>
-      </View>
-    </ScrollView>
+        </View>
+        <View style={{}}>
+          <Button
+            type="outline"
+            icon={
+              <Image
+                source={require('../../../Assets/Images/google.jpeg')}
+                style={{ width: 20, height: 20 }}
+              />
+            }
+            titleStyle={{ color: '#0B774B', fontSize: 15, marginLeft: 5 }}
+            buttonStyle={styles.buttons}
+            onPress={() =>
+              GoogleSignIn().then(() => {
+                console.log('Signed In')
+              })
+            }
+          >
+            Continue with Google
+          </Button>
+        </View>
+      </ScrollView>
 
       {/* <Button
         type="outline"
@@ -337,34 +384,35 @@ const LoginFirst = ({ navigation }) => {
       >
         Continue with Facebook
       </Button> */}
-      <View style={{position:"absolute",bottom:0,width:"100%"}}>
-      <Divider
-        orientation="horizontal"
-        color="#CDEFE9"
-        width={1}
-        style={{ width: '100%', marginTop: 25 }}
-      />
-      <Pressable
-        onPress={() => {
-          navigation.navigate('SignupEmail')
-        }}
-      >
-        <Text
-          style={{
-            color: '#0B774B',
-            textAlign: 'center',
-            marginTop: 20,
-            height: 50,
+      <View style={{ position: 'absolute', bottom: 0, width: '100%' }}>
+        <Divider
+          orientation="horizontal"
+          color="#CDEFE9"
+          width={1}
+          style={{ width: '100%', marginTop: 25 }}
+        />
+        <Pressable
+          onPress={() => {
+            navigation.navigate('SignupEmail')
           }}
         >
-          Not a member yet?
-          <Text style={{ color: '#FF6E15', textAlign: 'center',marginLeft:10 }}>
-            Join now
+          <Text
+            style={{
+              color: '#0B774B',
+              textAlign: 'center',
+              marginTop: 20,
+              height: 50,
+            }}
+          >
+            Not a member yet?
+            <Text
+              style={{ color: '#FF6E15', textAlign: 'center', marginLeft: 10 }}
+            >
+              Join now
+            </Text>
           </Text>
-        </Text>
-      </Pressable>
+        </Pressable>
       </View>
-
     </View>
   )
 }
@@ -374,16 +422,18 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto',
   },
   container: {
-    backgroundColor: 'white',width:"100%",height:"100%"
-
+    backgroundColor: 'white',
+    width: '100%',
+    height: '100%',
   },
-  buttons:{
+  buttons: {
     height: 55,
-    width: "82%",
+    width: '82%',
     marginTop: 15,
     backgroundColor: 'white',
     borderRadius: 12,
-    borderColor: '#0B774B',alignSelf:"center"
+    borderColor: '#0B774B',
+    alignSelf: 'center',
   },
   input: {
     height: 50,
@@ -391,9 +441,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#CDEFE9',
     padding: 10,
-    width: "82%",
+    width: '82%',
     borderRadius: 4,
-    alignSelf:"center"
+    alignSelf: 'center',
   },
 })
 

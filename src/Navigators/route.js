@@ -66,7 +66,6 @@ const screens = {
       backgroundColor: 'white',
     },
   },
-  
   Educatorlogin: {
     screen: Educatorlogin,
     backgroundColor: 'transparent',

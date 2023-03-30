@@ -10,7 +10,7 @@ import {
   Pressable,
   ActivityIndicator,
 } from 'react-native'
-import Icon from 'react-native-vector-icons/Ionicons'
+import axios from 'axios'
 import { Button, Divider } from '@rneui/base'
 import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore'
@@ -69,18 +69,19 @@ const Educatorlogin = ({ navigation }) => {
   const EmailSignIn = async (email, password) => {
     try {
       if (email !== '' && password !== '') {
-        toggleLoading()
-        const res = await auth().signInWithEmailAndPassword(email, password)
-        console.log('Signed-In')
-        console.log(res)
-        dispatch(
-          addUser({
-            email: res.user.email,
-            name: res.user.displayName,
-            photo: res.user.photoURL,
-          }),
-        )
-        navigation.navigate('Student')
+
+        // toggleLoading()
+        // const res = await auth().signInWithEmailAndPassword(email, password)
+        // console.log('Signed-In')
+        // console.log(res)
+        // dispatch(
+        //   addUser({
+        //     email: res.user.email,
+        //     name: res.user.displayName,
+        //     photo: res.user.photoURL,
+        //   }),
+        // )
+        navigation.navigate('Educator')
       } else {
         alert('Please Enter Email and Password to Continue')
       }
@@ -157,7 +158,6 @@ const Educatorlogin = ({ navigation }) => {
     <View style={styles.container}>
     <ScrollView >
       <View style={{flexDirection:"row",alignItems:"center",  marginTop: 70,}}>
-
           <Image
             source={require('../../../Assets/Images/logo.png')}
             style={{

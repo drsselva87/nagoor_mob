@@ -1,9 +1,17 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, View, ScrollView, Pressable, Image, FlatList } from 'react-native'
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  Pressable,
+  Image,
+  FlatList,
+} from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 import FontIcon from 'react-native-vector-icons/FontAwesome5'
 // import { Card } from '@rneui/themed'
-import { Card } from 'react-native-shadow-cards';
+import { Card } from 'react-native-shadow-cards'
 
 import { LearnerDetails } from '../../../Constants/Learners'
 import { CoursesDetails } from '../../../Constants/Courses'
@@ -34,15 +42,17 @@ const EducatorHome = ({ navigation }) => {
               }}
             />
           </Pressable>
-          <View style={{ marginLeft: 10, width: "70%" }}>
+          <View style={{ marginLeft: 10, width: '70%' }}>
             <Text style={{ color: 'black', fontSize: 14 }}>Hello!</Text>
             <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 16 }}>
               Jyoti Jha
             </Text>
           </View>
-          <Pressable  onPress={() => {
+          <Pressable
+            onPress={() => {
               navigation.navigate('StudentSearchResult')
-            }}>
+            }}
+          >
             <Icon name="search" size={27} color="black" />
           </Pressable>
         </View>
@@ -87,7 +97,7 @@ const EducatorHome = ({ navigation }) => {
         disableIntervalMomentum={true}
         // snapToInterval={wp('100%')}
       > */}
-        <View style={{ width: "100%", height: 80 }}>
+        <View style={{ width: '100%', height: 80 }}>
           <FlatList
             data={LearnerDetails}
             horizontal={true}
@@ -100,19 +110,18 @@ const EducatorHome = ({ navigation }) => {
                     width: 64,
                     height: 64,
                     borderRadius: 100,
-                    marginLeft: wp('3%'), marginRight: wp('2%')
+                    marginLeft: wp('3%'),
+                    marginRight: wp('2%'),
                   }}
                 />
               </View>
               // ))}
-            )
-            }
+            )}
           />
         </View>
         {/* </ScrollView> */}
         <View
           style={{
-
             marginLeft: wp('5%'),
 
             flexDirection: 'row',
@@ -139,7 +148,8 @@ const EducatorHome = ({ navigation }) => {
         >
           <View
             style={{
-              flexDirection: 'row', alignItems: "center"
+              flexDirection: 'row',
+              alignItems: 'center',
             }}
           >
             <View>
@@ -183,15 +193,33 @@ const EducatorHome = ({ navigation }) => {
             </View>
           </View>
           <Card
-            style={{ color: '#ffffff', borderRadius: 10, width: wp('80%'), height: 40, alignItems: "center", justifyContent: "center", marginTop: 20, alignSelf: "center" }}
-
+            style={{
+              color: '#ffffff',
+              borderRadius: 10,
+              width: wp('80%'),
+              height: 40,
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginTop: 20,
+              alignSelf: 'center',
+            }}
           >
-            <View style={{ flexDirection: 'row', justifyContent: "center", alignItems: "center" }}>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
               <Icon name="calendar" size={18} style={{ color: 'black' }} />
               <Text style={{ marginLeft: 5, color: 'black', fontSize: 12 }}>
                 Monday, 26 Decemeber
               </Text>
-              <Icon name="time-outline" size={18} style={{ color: 'black', marginLeft: 5 }} />
+              <Icon
+                name="time-outline"
+                size={18}
+                style={{ color: 'black', marginLeft: 5 }}
+              />
               <Text style={{ color: 'black', fontSize: 12, marginLeft: 3 }}>
                 03:00 - 05:00
               </Text>
@@ -199,14 +227,25 @@ const EducatorHome = ({ navigation }) => {
           </Card>
         </LinearGradient>
         <LinearGradient
-          colors={['#52FAB5', '#52FAB5']} style={{ height: 6,
-            width: wp('78%'), alignSelf: "center", borderBottomLeftRadius: 10, borderBottomRightRadius: 10
-          }}></LinearGradient>
-        <LinearGradient
-          colors={['#A7FFDB', '#A7FFDB']} style={{
+          colors={['#52FAB5', '#52FAB5']}
+          style={{
             height: 6,
-            width: wp('70%'), alignSelf: "center", borderBottomLeftRadius: 10, borderBottomRightRadius: 10
-          }}></LinearGradient>
+            width: wp('78%'),
+            alignSelf: 'center',
+            borderBottomLeftRadius: 10,
+            borderBottomRightRadius: 10,
+          }}
+         />
+        <LinearGradient
+          colors={['#A7FFDB', '#A7FFDB']}
+          style={{
+            height: 6,
+            width: wp('70%'),
+            alignSelf: 'center',
+            borderBottomLeftRadius: 10,
+            borderBottomRightRadius: 10,
+          }}
+         />
 
         <View
           style={{
@@ -227,22 +266,19 @@ const EducatorHome = ({ navigation }) => {
             <Text style={{ color: '#27BC7F' }}>View all</Text>
           </Pressable>
         </View>
-        <View style={{ width: '100%', height: 80, marginTop: 13, }}>
+        <View style={{ width: '100%', height: 80, marginTop: 13 }}>
           <ScrollView horizontal={true} style={{}}>
             <View style={{ marginLeft: 20 }}>
               <Card style={styles.category}>
                 <Icon name="logo-html5" size={25} color="#27BC7F" />
-
               </Card>
               <Text style={styles.categorytext}>Software</Text>
             </View>
             <View style={{ marginLeft: 20 }}>
               <Card style={styles.category}>
                 <FontIcon name="stethoscope" size={25} color="#27BC7F" />
-
               </Card>
               <Text style={styles.categorytext}>NEET</Text>
-
             </View>
 
             <View style={{ marginLeft: 20 }}>
@@ -263,15 +299,12 @@ const EducatorHome = ({ navigation }) => {
                 <Icon name="ios-analytics-outline" size={25} color="#27BC7F" />
               </Card>
               <Text style={styles.categorytext}>Commerce</Text>
-
             </View>
           </ScrollView>
-
         </View>
 
         <View
           style={{
-
             marginLeft: wp('5%'),
 
             flexDirection: 'row',
@@ -293,14 +326,20 @@ const EducatorHome = ({ navigation }) => {
         <View style={{ marginTop: 15 }}>
           <FlatList
             data={CoursesDetails}
-
             renderItem={({ item, key }) => (
               // {CoursesDetails.map((items, key) => (
               <View key={key}>
-                <Card style={{
-                  width: "90%", height: 80, borderRadius: 10, backgroundColor: 'white',
-                  marginTop: 15, alignSelf: "center", flexDirection: "row", alignItems: "center"
-                }}
+                <Card
+                  style={{
+                    width: '90%',
+                    height: 80,
+                    borderRadius: 10,
+                    backgroundColor: 'white',
+                    marginTop: 15,
+                    alignSelf: 'center',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                  }}
                 >
                   {/* <View style={{ flexDirection: "row",alignItems:"center" ,}}> */}
                   <Image
@@ -310,10 +349,8 @@ const EducatorHome = ({ navigation }) => {
                       height: 65,
                       borderRadius: 10,
                       marginLeft: 10,
-
                     }}
-                  >
-                  </Image>
+                   />
                   <View>
                     <Text
                       numberOfLines={1}
@@ -328,7 +365,14 @@ const EducatorHome = ({ navigation }) => {
                     >
                       {item.course_name}
                     </Text>
-                    <View style={{ flexDirection: "row", alignItems: 'center', marginTop: 9, marginLeft: 15 }}>
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        marginTop: 9,
+                        marginLeft: 15,
+                      }}
+                    >
                       <Text
                         style={{
                           fontSize: 14,
@@ -344,12 +388,10 @@ const EducatorHome = ({ navigation }) => {
                           width: 16,
                           fontSize: 14,
                           color: 'black',
-                          marginLeft: 15
+                          marginLeft: 15,
                         }}
-                      >
-                      </Icon>
+                       />
                       <Text style={{ color: 'black' }}>23 Min</Text>
-
                     </View>
                     {/* <View
                         style={{
@@ -400,8 +442,7 @@ const EducatorHome = ({ navigation }) => {
                   <Text />
                 </Card>
               </View>
-            )
-            }
+            )}
           />
         </View>
       </ScrollView>
@@ -429,10 +470,21 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: 'white',
     flexDirection: 'column',
-    height: "99%"
+    height: '99%',
   },
-  category: { width: 60, height: 60, borderRadius: 50, justifyContent: "center", alignItems: "center" },
-  categorytext: { textAlign: 'center', color: 'black', fontSize: 10, marginTop: 8 }
+  category: {
+    width: 60,
+    height: 60,
+    borderRadius: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  categorytext: {
+    textAlign: 'center',
+    color: 'black',
+    fontSize: 10,
+    marginTop: 8,
+  },
 })
 
 export default EducatorHome
