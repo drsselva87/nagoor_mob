@@ -156,6 +156,8 @@ const Educatorlogin = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <View style={{ height: "95%" }}>
+
     <ScrollView >
       <View style={{flexDirection:"row",alignItems:"center",  marginTop: 70,}}>
           <Image
@@ -318,6 +320,34 @@ const Educatorlogin = ({ navigation }) => {
         Continue with Google
       </Button>
       </View>
+      <View style={{ width: "100%", marginTop: 100 }}>
+            <Divider
+              orientation="horizontal"
+              color="#CDEFE9"
+              width={1}
+              style={{ width: '100%', marginTop: 25 }}
+            />
+            <Pressable
+              onPress={() => {
+                navigation.navigate('SignupEmail')
+              }}
+            >
+              <Text
+                style={{
+                  color: '#0B774B',
+                  textAlign: 'center',
+                  marginTop: 20,
+                
+                }}
+              >
+                Not a member yet?
+                <Text style={{ color: '#FF6E15', textAlign: 'center', marginLeft: 10 }}>
+                  Join now
+                </Text>
+              </Text>
+            </Pressable>
+
+          </View>
     </ScrollView>
 
       {/* <Button
@@ -337,32 +367,7 @@ const Educatorlogin = ({ navigation }) => {
       >
         Continue with Facebook
       </Button> */}
-      <View style={{position:"absolute",bottom:0,width:"100%"}}>
-      <Divider
-        orientation="horizontal"
-        color="#CDEFE9"
-        width={1}
-        style={{ width: '100%', marginTop: 25 }}
-      />
-      <Pressable
-        onPress={() => {
-          navigation.navigate('SignupEmail')
-        }}
-      >
-        <Text
-          style={{
-            color: '#0B774B',
-            textAlign: 'center',
-            marginTop: 20,
-            height: 50,
-          }}
-        >
-          Not a member yet?
-          <Text style={{ color: '#FF6E15', textAlign: 'center',marginLeft:10 }}>
-            Join now
-          </Text>
-        </Text>
-      </Pressable>
+     
       </View>
 
     </View>

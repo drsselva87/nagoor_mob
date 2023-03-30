@@ -8,10 +8,12 @@ import {
   TextInput,
   Pressable,
   Dimensions,
-  SafeAreaView,
+  SafeAreaView,TouchableOpacity
 } from 'react-native'
 import axios from 'axios'
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import IconEye from 'react-native-vector-icons/FontAwesome';
+
 import { launchImageLibrary, launchCamera } from 'react-native-image-picker'
 import { Button, Dialog, Divider } from '@rneui/base'
 // import PhotoUpload from 'react-native-photo-upload'
@@ -29,6 +31,8 @@ const SignupEmail = ({ navigation }) => {
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
   const [confirmpassword, setConfirmpassword] = React.useState('')
+  const [passwordVisibility, setPasswordVisibility] = useState(true);
+  const [rightIcon, setRightIcon] = useState('eye');
   const dispatch = useDispatch()
 
   const saveData = (registered_email, name, photo, uid) => {
@@ -82,21 +86,31 @@ const SignupEmail = ({ navigation }) => {
             role: 'Educator',
           })
           .then(function (response) {
-            console.log('******* Done********')
+            console.log(response.data,'******* Done********')
             console.log(response.data)
-            navigation.navigate('Login')
+            navigation.navigate('LoginFirst')
           })
           .catch(function (error) {
-            console.log(error.response.data)
+            // console.log(error.response.data)
           })
       }
-      else{
+      else {
         alert("Please ensure that the password entered for confirmation matches the original password.")
       }
     } catch (error) {
       console.log(error)
     }
   }
+
+  const handlePasswordVisibility = () => {
+    if (rightIcon === 'eye') {
+        setRightIcon('eye-off');
+        setPasswordVisibility(!passwordVisibility);
+    } else if (rightIcon === 'eye-off') {
+        setRightIcon('eye');
+        setPasswordVisibility(!passwordVisibility);
+    }
+};
 
   return (
     <View style={styles.container}>
@@ -229,6 +243,7 @@ const SignupEmail = ({ navigation }) => {
           />
         </SafeAreaView>
         <SafeAreaView marginTop={10}>
+  
           <TextInput
             style={styles.input}
             placeholder="Email"
@@ -241,17 +256,38 @@ const SignupEmail = ({ navigation }) => {
           />
         </SafeAreaView>
         <SafeAreaView marginTop={10}>
-          <TextInput
-            style={styles.input}
-            placeholder="Password"
-            secureTextEntry={true}
-            value={password}
-            onChangeText={txt => {
-              setPassword(txt)
-            }}
-            placeholderTextColor={'#0B774B'}
-            backgroundColor="#F9FFFC"
-          />
+        <View style={{
+              flexDirection: "row",   height: 50,
+              marginTop: 15,
+              borderWidth: 1,
+              color: 'black',
+              borderColor: '#CDEFE9',
+           
+              width: '83%',
+              borderRadius: 4,
+              alignSelf: 'center',alignItems:"center"
+            }}>
+
+              <TextInput
+                style={styles.input1}
+                value={password}
+                secureTextEntry={passwordVisibility}
+                onChangeText={txt => {
+                  setPassword(txt)
+                }}
+                placeholder="Password"
+                keyboardType="password"
+                placeholderTextColor={'#0B774B'}
+                backgroundColor="#F9FFFC"
+              />
+           
+                          
+              <TouchableOpacity  onPress={handlePasswordVisibility}>
+              <IconEye name="eye" size={25} style={{marginLeft:10}} color="#0C8A7B"/>
+             
+              </TouchableOpacity>
+            </View>
+  
         </SafeAreaView>
         <SafeAreaView marginTop={10}>
           <TextInput
@@ -269,13 +305,11 @@ const SignupEmail = ({ navigation }) => {
           titleStyle={{ color: 'white', fontSize: 15 }}
           buttonStyle={{
             height: 50,
-            width: 300,
-            alignContent: 'center',
-            margin: 0,
-            flex: 1,
+            width: '83%',
+            alignSelf: 'center',
+
             marginTop: 30,
-            paddingLeft: 0,
-            marginLeft: 30,
+
             backgroundColor: '#0B774B',
             borderRadius: 12,
           }}
@@ -340,6 +374,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     width: '100%',
     height: '100%',
+  },
+  input1:{
+   height: 45,
+   
+    color: 'black',
+  
+    width: '83%',   padding: 10,
+ 
   },
   input: {
     height: 50,

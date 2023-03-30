@@ -8,7 +8,7 @@ import {
   TextInput,
   SafeAreaView,
   Pressable,
-  ActivityIndicator,
+  ActivityIndicator,TouchableOpacity
 } from 'react-native'
 import axios from 'axios'
 import { Button, Divider } from '@rneui/base'
@@ -20,7 +20,9 @@ import {
 } from '@react-native-google-signin/google-signin'
 import { addUser } from '@/Store/userSlice'
 import { useDispatch } from 'react-redux'
-
+import Toast from 'react-native-simple-toast';
+// import Icon from 'react-native-vector-icons/MaterialIcons'
+import Icon from 'react-native-vector-icons/FontAwesome';
 const baseUrl = 'http://44.202.89.70:8989/api/loginUser'
 
 const LoginFirst = ({ navigation }) => {
@@ -29,6 +31,8 @@ const LoginFirst = ({ navigation }) => {
   const [password, setPassword] = React.useState('')
   const dispatch = useDispatch()
   const [isLoading, setIsLoading] = useState(false)
+  const [passwordVisibility, setPasswordVisibility] = useState(true);
+  const [rightIcon, setRightIcon] = useState('eye');
   const toggleLoading = isLoading => {
     setIsLoading(!isLoading)
   }
@@ -101,42 +105,51 @@ const LoginFirst = ({ navigation }) => {
     //     )
     //   }
     // }
-    try {
-      axios
-        .get(baseUrl + '/' + email + '/' + password)
-        .then(function (response) {
-          console.log('******* Done********')
-          console.log(response.data)
-          saveData(
-            response.data.email,
-            response.data.firstName,
-            '',
-            response.data.password,
-            response.data.role,
-          )
-          dispatch(
-            addUser({
-              email: response.data.email,
-              name: response.data.firstName,
-              photo: null,
-              password: response.data.password,
-              role: response.data.role,
-            }),
-          )
-          if (response.data.role === 'Student') {
-            console.log('respinse going to studenttttttttt')
-            navigation.navigate('Student')
-          } else {
-            console.log('respinse going to educatorrrrrrrrr')
-            navigation.navigate('Educator')
-          }
-        })
-        .catch(function (error) {
-          console.log(error)
-        })
-    } catch (error) {
-      console.log(error)
+    if (email == '') {
+      Toast.show("Please Enter a Email Id", Toast.SHORT)
     }
+    else if (password == '') {
+      Toast.show("Please Enter a Password", Toast.SHORT)
+    }
+    else{
+      try {
+        axios
+          .get(baseUrl + '/' + email + '/' + password)
+          .then(function (response) {
+            console.log('******* Done********')
+            console.log(response.data)
+            saveData(
+              response.data.email,
+              response.data.firstName,
+              '',
+              response.data.password,
+              response.data.role,
+            )
+            dispatch(
+              addUser({
+                email: response.data.email,
+                name: response.data.firstName,
+                photo: null,
+                password: response.data.password,
+                role: response.data.role,
+              }),
+            )
+            if (response.data.role === 'Student') {
+              console.log('respinse going to studenttttttttt')
+              navigation.navigate('Student')
+            } else {
+              console.log('respinse going to educatorrrrrrrrr')
+              navigation.navigate('Educator')
+            }
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+      } catch (error) {
+        console.log(error)
+      }
+    }
+   
   }
 
   const GoogleSignIn = async () => {
@@ -189,237 +202,247 @@ const LoginFirst = ({ navigation }) => {
       setAutheticated(true)
     }
   })
-
+  const handlePasswordVisibility = () => {
+    if (rightIcon === 'eye') {
+        setRightIcon('eye-off');
+        setPasswordVisibility(!passwordVisibility);
+    } else if (rightIcon === 'eye-off') {
+        setRightIcon('eye');
+        setPasswordVisibility(!passwordVisibility);
+    }
+};
   return (
     <View style={styles.container}>
-      <ScrollView>
-        <View
-          style={{ flexDirection: 'row', alignItems: 'center', marginTop: 70 }}
-        >
-          <Image
-            source={require('../../../Assets/Images/logo.png')}
-            style={{
-              width: 60,
-              height: 60,
-              borderRadius: 100,
-              marginLeft: 30,
-            }}
-          />
+      <View style={{ height: "95%" }}>
 
-          <View style={{ marginLeft: 5 }}>
+        <ScrollView>
+          <View
+            style={{ flexDirection: 'row', alignItems: 'center', marginTop: 70 }}
+          >
+            <Image
+              source={require('../../../Assets/Images/logo.png')}
+              style={{
+                width: 60,
+                height: 60,
+                borderRadius: 100,
+                marginLeft: 30,
+              }}
+            />
+
+            <View style={{ marginLeft: 5 }}>
+              <Text
+                style={{
+                  color: '#267900',
+                  fontSize: 30,
+                  fontFamily: 'LeagueSpartan-ExtraBold',
+                }}
+              >
+                GR
+                <Text
+                  style={{
+                    color: '#FF6E15',
+                    fontSize: 30,
+                    fontFamily: 'LeagueSpartan-ExtraBold',
+                  }}
+                >
+                  IT
+                </Text>
+                <Text
+                  style={{
+                    color: '#00C5E4',
+                    fontSize: 30,
+                    fontFamily: 'LeagueSpartan-ExtraBold',
+                  }}
+                >
+                  {' '}
+                  Studies
+                </Text>
+              </Text>
+            </View>
+          </View>
+          <Text
+            style={{
+              color: '#0B774B',
+              fontSize: 20,
+              fontFamily: 'Roboto',
+              marginLeft: 30,
+              fontWeight: '700',
+              marginTop: 20,
+              width: '90%',
+              lineHeight: 25,
+            }}
+          >
+            Quality learning simplified for anywhere and anytime
+          </Text>
+          <Text
+            style={{
+              color: '#252525',
+              fontSize: 16,
+              fontFamily: 'Roboto',
+              marginLeft: 30,
+              fontWeight: '400',
+              marginTop: 10,
+            }}
+          >
+            Sign in to GRIT Studies account
+          </Text>
+          <SafeAreaView marginTop={10}>
+            <TextInput
+              style={styles.input}
+              textContentType="emailAddress"
+              keyboardType="email-address"
+              placeholder="Email / Username"
+              value={email}
+              onChangeText={txt => {
+                setEmail(txt)
+              }}
+              placeholderTextColor={'#0B774B'}
+              backgroundColor="#F9FFFC"
+            />
+        <View style={{
+              flexDirection: "row", alignSelf: "center",    height: 50,
+              marginTop: 15,
+              borderWidth: 1,
+              borderColor: '#CDEFE9',
+              width: "82%",
+              borderRadius: 4,
+              alignSelf: "center",alignItems:"center"
+            }}>
+
+              <TextInput
+                style={styles.input1}
+                value={password}
+                secureTextEntry={passwordVisibility}
+                onChangeText={txt => {
+                  setPassword(txt)
+                }}
+                placeholder="Password"
+                keyboardType="password"
+                placeholderTextColor={'#0B774B'}
+                backgroundColor="#F9FFFC"
+              />
+           
+                          
+              <TouchableOpacity  onPress={handlePasswordVisibility}>
+              <Icon name="eye" size={25} style={{marginLeft:10}} color="#0C8A7B"/>
+              {/* <Image source={require("../../../Assets/eye.png")} style={{ width: 25, height: 25,marginLeft:5 }}></Image> */}
+              </TouchableOpacity>
+            </View>
+          </SafeAreaView>
+          <Text
+            style={{
+              color: '#FF6E15',
+              fontSize: 14,
+              fontFamily: 'Roboto',
+              marginLeft: '61%',
+              fontWeight: '400',
+              marginTop: 10,
+            }}
+            onPress={() => navigation.navigate('LoginFourth')}
+          >
+            Forgot password?
+          </Text>
+          <Button
+            type="solid"
+            titleStyle={{ color: 'white', fontSize: 15 }}
+            buttonStyle={{
+              height: 50,
+              width: '82%',
+              alignContent: 'center',
+              margin: 0,
+              flex: 1,
+              marginTop: 10,
+              paddingLeft: 0,
+
+              backgroundColor: '#0B774B',
+              borderRadius: 12,
+              alignSelf: 'center',
+            }}
+            onPress={() => {
+              EmailSignIn(email, password)
+            }}
+          >
+            Continue
+            {isLoading && <ActivityIndicator size="large" color="white" />}
+          </Button>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginTop: 15,
+            }}
+          >
+            <View
+              style={{ width: '32%', height: 1, backgroundColor: '#CDEFE9' }}
+            />
             <Text
               style={{
-                color: '#267900',
-                fontSize: 30,
-                fontFamily: 'LeagueSpartan-ExtraBold',
+                color: '#0B774B',
+                marginLeft: 15,
               }}
             >
-              GR
-              <Text
-                style={{
-                  color: '#FF6E15',
-                  fontSize: 30,
-                  fontFamily: 'LeagueSpartan-ExtraBold',
-                }}
-              >
-                IT
-              </Text>
-              <Text
-                style={{
-                  color: '#00C5E4',
-                  fontSize: 30,
-                  fontFamily: 'LeagueSpartan-ExtraBold',
-                }}
-              >
-                {' '}
-                Studies
-              </Text>
+              OR
             </Text>
+            <View
+              style={{
+                width: '32%',
+                height: 1,
+                backgroundColor: '#CDEFE9',
+                marginLeft: 15,
+              }}
+            />
           </View>
-        </View>
-        <Text
-          style={{
-            color: '#0B774B',
-            fontSize: 20,
-            fontFamily: 'Roboto',
-            marginLeft: 30,
-            fontWeight: '700',
-            marginTop: 20,
-            width: '90%',
-            lineHeight: 25,
-          }}
-        >
-          Quality learning simplified for anywhere and anytime
-        </Text>
-        <Text
-          style={{
-            color: '#252525',
-            fontSize: 16,
-            fontFamily: 'Roboto',
-            marginLeft: 30,
-            fontWeight: '400',
-            marginTop: 10,
-          }}
-        >
-          Sign in to GRIT Studies account
-        </Text>
-        <SafeAreaView marginTop={10}>
-          <TextInput
-            style={styles.input}
-            textContentType="emailAddress"
-            keyboardType="email-address"
-            placeholder="Email / Username"
-            value={email}
-            onChangeText={txt => {
-              setEmail(txt)
-            }}
-            placeholderTextColor={'#0B774B'}
-            backgroundColor="#F9FFFC"
-          />
-          <TextInput
-            style={styles.input}
-            value={password}
-            secureTextEntry={true}
-            onChangeText={txt => {
-              setPassword(txt)
-            }}
-            placeholder="Password"
-            keyboardType="password"
-            placeholderTextColor={'#0B774B'}
-            backgroundColor="#F9FFFC"
-          />
-        </SafeAreaView>
-        <Text
-          style={{
-            color: '#FF6E15',
-            fontSize: 14,
-            fontFamily: 'Roboto',
-            marginLeft: '61%',
-            fontWeight: '400',
-            marginTop: 10,
-          }}
-          onPress={() => navigation.navigate('LoginFourth')}
-        >
-          Forgot password?
-        </Text>
-        <Button
-          type="solid"
-          titleStyle={{ color: 'white', fontSize: 15 }}
-          buttonStyle={{
-            height: 50,
-            width: '82%',
-            alignContent: 'center',
-            margin: 0,
-            flex: 1,
-            marginTop: 10,
-            paddingLeft: 0,
-
-            backgroundColor: '#0B774B',
-            borderRadius: 12,
-            alignSelf: 'center',
-          }}
-          onPress={() => {
-            EmailSignIn(email, password)
-          }}
-        >
-          Continue
-          {isLoading && <ActivityIndicator size="large" color="white" />}
-        </Button>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-            marginTop: 15,
-          }}
-        >
-          <View
-            style={{ width: '32%', height: 1, backgroundColor: '#CDEFE9' }}
-          />
-          <Text
-            style={{
-              color: '#0B774B',
-              marginLeft: 15,
-            }}
-          >
-            OR
-          </Text>
-          <View
-            style={{
-              width: '32%',
-              height: 1,
-              backgroundColor: '#CDEFE9',
-              marginLeft: 15,
-            }}
-          />
-        </View>
-        <View style={{}}>
-          <Button
-            type="outline"
-            icon={
-              <Image
-                source={require('../../../Assets/Images/google.jpeg')}
-                style={{ width: 20, height: 20 }}
-              />
-            }
-            titleStyle={{ color: '#0B774B', fontSize: 15, marginLeft: 5 }}
-            buttonStyle={styles.buttons}
-            onPress={() =>
-              GoogleSignIn().then(() => {
-                console.log('Signed In')
-              })
-            }
-          >
-            Continue with Google
-          </Button>
-        </View>
-      </ScrollView>
-
-      {/* <Button
-        type="outline"
-        icon={<Icon name="logo-apple" size={20} color="black" />}
-        titleStyle={{ color: '#0B774B', fontSize: 15, marginLeft: 5 }}
-        buttonStyle={styles.buttons}
-      >
-        Continue with Apple
-      </Button> */}
-      {/* <Button
-        type="outline"
-        icon={<Icon name="logo-facebook" size={20} color="#3F51B5" />}
-        titleStyle={{ color: '#0B774B', fontSize: 15, marginLeft: 5 }}
-        buttonStyle={styles.buttons}
-        // onPress={() => onFacebookButtonPress().then(() => console.log('Signed in with Facebook!'))}
-      >
-        Continue with Facebook
-      </Button> */}
-      <View style={{ position: 'absolute', bottom: 0, width: '100%' }}>
-        <Divider
-          orientation="horizontal"
-          color="#CDEFE9"
-          width={1}
-          style={{ width: '100%', marginTop: 25 }}
-        />
-        <Pressable
-          onPress={() => {
-            navigation.navigate('SignupEmail')
-          }}
-        >
-          <Text
-            style={{
-              color: '#0B774B',
-              textAlign: 'center',
-              marginTop: 20,
-              height: 50,
-            }}
-          >
-            Not a member yet?
-            <Text
-              style={{ color: '#FF6E15', textAlign: 'center', marginLeft: 10 }}
+          <View style={{}}>
+            <Button
+              type="outline"
+              icon={
+                <Image
+                  source={require('../../../Assets/Images/google.jpeg')}
+                  style={{ width: 20, height: 20 }}
+                />
+              }
+              titleStyle={{ color: '#0B774B', fontSize: 15, marginLeft: 5 }}
+              buttonStyle={styles.buttons}
+              onPress={() =>
+                GoogleSignIn().then(() => {
+                  console.log('Signed In')
+                })
+              }
             >
-              Join now
-            </Text>
-          </Text>
-        </Pressable>
+              Continue with Google
+            </Button>
+          </View>
+          <View style={{ width: "100%", marginTop: 100 }}>
+            <Divider
+              orientation="horizontal"
+              color="#CDEFE9"
+              width={1}
+              style={{ width: '100%', marginTop: 25 }}
+            />
+            <Pressable
+              onPress={() => {
+                navigation.navigate('SignupEmail')
+              }}
+            >
+              <Text
+                style={{
+                  color: '#0B774B',
+                  textAlign: 'center',
+                  marginTop: 20,
+
+                }}
+              >
+                Not a member yet?
+                <Text style={{ color: '#FF6E15', textAlign: 'center', marginLeft: 10 }}>
+                  Join now
+                </Text>
+              </Text>
+            </Pressable>
+
+          </View>
+        </ScrollView>
+
       </View>
     </View>
   )
@@ -442,6 +465,12 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderColor: '#0B774B',
     alignSelf: 'center',
+  },
+  input1: {
+    height: 50,
+    width: "82%",height:45
+    // borderRadius: 4,
+    // alignSelf: "center"
   },
   input: {
     height: 50,
