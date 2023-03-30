@@ -73,53 +73,26 @@ const SignupEmail = ({ navigation }) => {
 
   const SignUp = async (email, name, photo, password, confirmpassword) => {
     try {
-      // if (password === confirmpassword) {
-      //   const res = await auth()
-      //     .createUserWithEmailAndPassword(email, password)
-      //     .then(() => {
-      //       auth()
-      //         .currentUser.sendEmailVerification()
-      //         .then(() => {
-      //           console.log('Verification email sent!')
-      //           console.log(res.user.emailVerified)
-      //           // res.user.displayName = name
-      //           console.log(res)
-      //         })
-      //         .catch(error => {
-      //           console.log('Please enter valid email id')
-      //         })
-      //         .then(() => {
-      //           saveData(res.user.email, name, photo, res.user.uid)
-      //           dispatch(
-      //             addUser({
-      //               email: res.user.email,
-      //               name: name,
-      //               photo: photo,
-      //             }),
-      //           )
-      //           navigation.navigate('StudentHome')
-      //         })
-      //     })
-      // } else {
-      //   alert(
-      //     'Please make sure your confirm password is same as your current password',
-      //   )
-      // }
-      axios
-        .post(baseUrl, {
-          "firstName": name,
-          "email": email,
-          "password": password,
-          "role": "Educator"
-        })
-        .then(function (response) {
-          console.log('******* Done********')
-          console.log(response.data)
-          navigation.navigate('Login')
-        })
-        .catch(function (error) {
-          console.log(error.response.data)
-        })
+      if (password === confirmpassword) {
+        axios
+          .post(baseUrl, {
+            firstName: name,
+            email: email,
+            password: password,
+            role: 'Educator',
+          })
+          .then(function (response) {
+            console.log('******* Done********')
+            console.log(response.data)
+            navigation.navigate('Login')
+          })
+          .catch(function (error) {
+            console.log(error.response.data)
+          })
+      }
+      else{
+        alert("Please ensure that the password entered for confirmation matches the original password.")
+      }
     } catch (error) {
       console.log(error)
     }
