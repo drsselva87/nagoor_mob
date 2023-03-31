@@ -2,13 +2,13 @@ import React, { useState, useEffect, Component } from 'react';
 import { View, Text, TouchableOpacity, Image, Dimensions, Pressable, ImageBackground, Animated, FlatList, Modal, ScrollView } from 'react-native';
 import { List } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Ionicons'
+import { useSelector } from 'react-redux'
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 
-
-
 export default function EducatorProfile(props, navigation) {
-
-
+  const userEmail = useSelector(store => store.user.email)
+  const userName = useSelector(store => store.user.name)
+  const userPhoto = useSelector(store => store.user.photo)
   const [expand, setexpand] = useState(false)
   const contactinf = (value) => {
     if (value) {
@@ -27,9 +27,6 @@ export default function EducatorProfile(props, navigation) {
 
   return (
     <View style={{ width: "100%", height: "100%" }}>
-
-
-
       <View style={{ width: "100%", height: 61, flexDirection: "row", alignItems: "center", }} >
       <TouchableOpacity style={{marginLeft:10}} onPress={()=>props.navigation.goBack()}>
 
@@ -43,11 +40,10 @@ export default function EducatorProfile(props, navigation) {
         <ScrollView>
 
           <View style={{ backgroundColor: "#CDEFE9", height: 178 }}>
-          <Image style={{ width: 60, height:60, resizeMode: "contain", marginLeft: 32, marginTop: 22,borderRadius:50 }}      source={require('../../../Assets/Images/tutor_images/arul.jpeg')} />
-          
-            <Text style={{ fontSize: 20, fontWeight: "500", color: "#1D1D1D", marginLeft: 32, marginTop: 15 }}>Sharon</Text>
+          <Image style={{ width: 60, height:60, resizeMode: "contain", marginLeft: 32, marginTop: 22,borderRadius:50 }} source={userPhoto} /> 
+            <Text style={{ fontSize: 20, fontWeight: "500", color: "#1D1D1D", marginLeft: 32, marginTop: 15 }}>{userName}</Text>
             <View style={{ marginLeft: 32, marginTop: 5, flexDirection: "row", alignItems: "center" }}>
-              <Text style={{ fontSize: 16, fontWeight: "400", color: "#616161", }}>arulj12@gmail.com</Text>
+              <Text style={{ fontSize: 16, fontWeight: "400", color: "#616161", }}>{userEmail}</Text>
             <TouchableOpacity onPress={()=>props.navigation.navigate("EducatorProfileEdit")}>
               <Image style={{ width: 20, height: 20, resizeMode: "contain", marginLeft: 10 }} source={require("../../../Assets/edit.png")} />
               </TouchableOpacity>

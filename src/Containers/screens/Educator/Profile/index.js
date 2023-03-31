@@ -8,9 +8,12 @@ import { Card } from 'react-native-shadow-cards';
 import styles from "./style"
 import Icon from 'react-native-vector-icons/Ionicons'
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useSelector } from 'react-redux'
 
 const EducatorProfileEdit = ({ navigation }) => {
-
+    const userEmail = useSelector(store => store.user.email)
+    const userName = useSelector(store => store.user.name)
+    const userPhoto = useSelector(store => store.user.photo)
     return (
         <ScrollView style={styles.responsiveBox}>
             <Card
@@ -36,12 +39,12 @@ const EducatorProfileEdit = ({ navigation }) => {
             <View style={styles.line}></View>
             <View style={styles.flexx}>
                 <Text style={styles.left}>Name : </Text>
-                <TextInput placeholder='sharon' placeholderTextColor={'#616161'} style={styles.right}></TextInput>
+                <TextInput placeholder={userName} placeholderTextColor={'#616161'} style={styles.right}></TextInput>
             </View>
             <View style={styles.line}></View>
             <View style={styles.flexx}>
                 <Text style={styles.left}>Email : </Text>
-                <TextInput placeholder='sharon@gmail.com' placeholderTextColor={'#616161'} style={styles.right}></TextInput>
+                <TextInput placeholder={userEmail} placeholderTextColor={'#616161'} style={styles.right}></TextInput>
             </View>
             <View style={styles.line}></View>
             <View style={styles.flexx}>
